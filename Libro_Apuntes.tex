@@ -627,6 +627,31 @@ lo que se traduce en $$\varepsilon'\mathbf{1}=0 \Leftrightarrow \sum^N_{i=1}\eps
 
 Notemos asimismo que el triángulo resultante de la proyección indica que $\parallel y\parallel^2=\parallel e\parallel ^2+\parallel \widehat{y}\parallel ^2$ o, lo que es lo mismo, $$\sum^N_{i=1}y^2_i=\sum^N_{i=1}e_i^2+\sum^N_{i=1}\widehat{y}_i^2$$
 		\subsection{Propiedades de los Estimadores Mínimo-Cuadráticos de la Recta de Regresión}
+\underline{\textbf{Los estimadores son lineales}}
+
+A partir de la expresión de $\widehat{\beta}_1$ podemos escribir: $$\widehat{\beta}_1=\dfrac{s_{xy}}{s^2_x}=\dfrac{\sum^N_{i=1}(x_i-\bar{x})(y_i-\bar{y})}{Ns^2_x}=\dfrac{\sum^N_{i=1}(x_i-\bar{x})y_i}{Ns^2_x}=\sum^N_{i=1}w_iy_i,\quad \mathrm{donde}\quad w_i=\dfrac{x_i-\bar{x}}{Ns^2_x}$$
+
+Observamos por tanto que $\widehat{\beta}_1$ es un \textbf{estimador residual} en las variables $y_i$
+
+Usando la expresión del modelo, tenemos 
+\begin{center}
+$\sum^N_{i=1}w_iy_i=\sum^N_{i=1}(\beta_0+\beta_1x_i+\epsilon_i)=\beta_1+\sum^N_{i=1}w_i\epsilon_i\qquad$ \textcolor{red}{$\sum^N_{i=1}w_i=0,\: \sum^N_{i_1}w_ix_i=1$}
+\end{center}
+
+Así pues, $\widehat{\beta}_1$ también puede expresarse como \textbf{combinación lineal} de las variables de perturbación $\epsilon_i$.
+
+Por otro lado $$\widehat{\beta}_0=\bar{y}-\widehat{\beta}_1\bar{x}=\dfrac{1}{N}\sum^N_{i=1}y_i-\bar{x}\sum^N_{i=1}w_iy_i=\sum^N_{i=1}\left[\dfrac{1}{N}-\bar{x}w_i\right] y_i=\sum^N_{i=1}\left[\dfrac{1}{N}-\bar{x}w_i\right] (\beta_0+\beta_1x_i+\epsilon_i)=\beta_0+\sum^N_{i=1}\left[\dfrac{1}{N}-\bar{x}w_i\right]\epsilon_i$$ donde se ha usado ahora que \textcolor{red}{$\sum^N_{i=1}\left[\dfrac{1}{N}-\bar{x}w_i\right]=1$} y \textcolor{red}{$\sum^N_{i=1}\left[\dfrac{1}{N}-\bar{x}w_i\right]x_i=0$}
+
+Por tanto, $\widehat{\beta}_0$ también es combinación lineal tanto de las variables $y_i$ como de las perturbaciones $\epsilon_i$.
+\ \\
+
+\underline{\textbf{Los estimadores son insesgados}}
+
+De las relaciones anteriores se deduce inmediatamente la insesgadez de ambos estimadores, esto es $E[\widehat{\beta}_0]=\beta_0$ y $E[\widehat{\beta}_1]=\beta_1$
+\ \\
+
+\underline{\textbf{Varianzas y covarianza de los estimadores}}
+Como $\widehat{\beta}_1$ es un estimador insesgado para $\beta_1$ se tiene $$Var[\widehat{\beta}_1]=E[(\widehat{\beta}_1-\beta_1)^2]=E\left[\left(\sum^N_{i=1}w_i\epsilon_i \right) ^2\right] =E\left[\sum^N_{i=1}w^2_i\epsilon^2_i+\sum^N_{\begin{split}i,&j=1\\&i \neq j \end{split}}w_iw_j\epsilon_i\epsilon_j\right]=\sum^N_{i=1}w_i^2E[\epsilon^2_i]+\sum^N_{\begin{split}i,&j=1\\&i \neq j \end{split}}w_iw_jE[\epsilon_i\epsilon_j]=$$$$=\sigma^2\sum^N_{i=1}w^2_i=\sigma^2\sum^N_{i=1}\dfrac{(x_i-\bar{x})^2}{N^2(s^2_x)^2}=\dfrac{\sigma^2}{Ns^2_x}$$
 		\subsection{Estimación de $\sigma^2$. Varianza Residual}
 	\section{Estimación del Modelo por Máxima Verosimilitud}
 	\section{Distribución de los Estimadores}
