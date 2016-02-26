@@ -13,7 +13,7 @@
 \tableofcontents
 
 \chapter{Introducción a los Modelos Lineales y a los Modelos de Regresión}
-\section{Definición del Modelo Lineal}
+	\section{Definición del Modelo Lineal}
 Sea $Y$ una variable de la cual se desea estudiar algunos aspectos sobre su comportamiento (predecir valores futuros, comprobar si se comporta de igual manera ante influencias externas diferentes,...)
 
 Para ese análisis consideremos un conjunto de variables \textit{auxiliares}($X_1,...,X_k$)que se cree pueden aportar información acerca del problema concreto que se desea estudiar.
@@ -57,7 +57,7 @@ En este planteamiento general quedan multitud de cuestiones por precisar como pu
 Así se puede hacer una clasificación de los modelos lineales atendiendo a la naturaleza y las interrelaciones de los elementos del modelo. También se pueden clasificar según la dimensión de las variables, distinguiéndose así entre el Modelo Lineal General Univariante y Multivariante. Por último, se dirá que el modelo es
 simple si sólo considera una variable explicativa, mientras que diremos que es múltiple si existen varias.
 
-\section{Algunos Tipos de Modelos Lineales}
+	\section{Algunos Tipos de Modelos Lineales}
 $$y_i = \beta_0 + \beta_1x_{i1} + \beta_2x_{i2} +...+ \beta_kx_{ik} + \epsilon_i\ ;\ i=1,...,N$$
 $$y = X\beta + \epsilon$$
 
@@ -143,7 +143,7 @@ MODELO LINEAL DE GAUSS MARKOV
 \item Los valores de $X$ están prefijados
 \end{itemize}
 
-\section{Modelo Lineal de Gauss-Markov}
+	\section{Modelo Lineal de Gauss-Markov}
 $$ \left( \begin{array}{c}
 y_1\\
 y_2\\
@@ -203,7 +203,7 @@ GENERALIZACIÓN
 Modelo de Aitken: $Cov(\varepsilon)=\sigma^2V,\ V\ conocida$
 \end{center}
 
-\section{Ejemplos de Modelos de Gauss-Markov}
+	\section{Ejemplos de Modelos de Gauss-Markov}
 \begin{center}
 PROBLEMA DE UNA MUESTRA
 \end{center}
@@ -460,7 +460,7 @@ y_{kN_k}\\
 $ \downarrow $
 \end{center}
 $$y=X\beta+\epsilon$$
-\section{Regresión}
+	\section{Regresión}
 \textbf{Regresión:} Búsqueda de una función que exprese la relación dos o más variables.
 \ \\
 
@@ -482,7 +482,7 @@ $$y=X\beta+\epsilon$$
 \end{itemize}
 
 \chapter{El Modelo de Regresión Lineal Simple Univariante (I)}
-\section{Hipótesis Básicas del Modelo}
+	\section{Hipótesis Básicas del Modelo}
 Sea $Y$ una variable que representa una característica de una población, característica objeto de estudio y sobre la cual se desea conocer diversos aspectos de su comportamiento. Para ello disponemos de la información suministrada por otra variable $X$, cuyos valores pueden ser determinados \textit{a priori}. A $Y$ la conoceremos como la variables dependiente (o variable explicada o regresando), mientras que $X$ es la
 variable independiente (o variable explicativa o regresor).
 
@@ -544,13 +544,13 @@ Asimismo se puede reformular esta hipótesis refiriéndola a las variables $y_i$
 correspondan al mismo periodo temporal, pero no lo será tanto en situaciones dinámicas
 en las que se mide la variable respuesta a lo largo del tiempo. Por ejemplo, si pretendemos estudiar dos variables de índole económica en distintos países durante un mismo año, como pueden ser el producto interior bruto como variable independiente y el consumo como variable dependiente, es de suponer, en principio, que no tiene por qué haber una dependencia entre las observaciones. Sin embargo ese mismo tipo de estudio hecho en un país concreto a lo largo de varios años puede llevar implícito el hecho de que los factores recogidos en la perturbación hayan evolucionado en el tiempo y, por lo tanto, haya algún tipo de correlación a lo largo del tiempo entre las perturbaciones.
 \end{enumerate}
-\section{Estimación del Modelo por Mínimos Cuadrados Ordinarios}
-\subsection{Obtención de Estimadores}
+	\section{Estimación del Modelo por Mínimos Cuadrados Ordinarios}
+		\subsection{Obtención de Estimadores}
 Consideremos el modelo de regresión lineal simple $Y=\beta_0 + \beta_1X + \epsilon$
 
-Nuestra intención es encontrar los valores de $\beta_0$ y $\beta_1$ tales que expliquen de la mejor forma posible la relación de tipo lineal que liga a las variables en estudio. Para ello tendremos que buscar dos estimaciones de dichos parámetros, llamémoslas $\hat{\beta_0}$ y $\hat{\beta_1}$
+Nuestra intención es encontrar los valores de $\beta_0$ y $\beta_1$ tales que expliquen de la mejor forma posible la relación de tipo lineal que liga a las variables en estudio. Para ello tendremos que buscar dos estimaciones de dichos parámetros, llamémoslas $\widehat{\beta_0}$ y $\widehat{\beta_1}$
 
-Bajo este supuesto, y para cada valor de $x$ de $X$, la predicción que sobre la variable $Y$ se haría es $$\hat{y}=\hat{\beta_0}+\hat{\beta_1}x$$ expresión que genera, al variar $X$ en su rango, una recta, llamada \textit{recta de regresión}.
+Bajo este supuesto, y para cada valor de $x$ de $X$, la predicción que sobre la variable $Y$ se haría es $$\widehat{y}=\widehat{\beta_0}+\widehat{\beta_1}x$$ expresión que genera, al variar $X$ en su rango, una recta, llamada \textit{recta de regresión}.
 
 Para realizar el proceso de estimación necesitamos una muestra de la variable dependiente. Cada elemento de dicha muestra se obtiene fijado un valor $x_i$ de $X$. De esta forma tenemos las relaciones $$y_i=\beta_0+\beta_1x_i+\epsilon_i\ ;\ i=1,...,N,\ (N > 2)$$
 
@@ -562,9 +562,9 @@ Matemáticamente hablando el problema se traduce en minimizar la función de dos
 
 Para la resolución técnica se deriva la función anterior respecto de los parámetros y se plantea el sistema de ecuaciones  $$\frac{\partial S(\beta_0,\beta_1)}{\partial \beta_0}=0, \qquad \frac{\partial S(\beta_0,\beta_1)}{\partial \beta_1}=0$$ resultando así $$-2\sum^N_{i=1}(y_i\beta_0-\beta_1x_i)=0,\qquad -2\sum^N_{i=1}(y_i-\beta_0-\beta_1x_i)x_i=0$$ o lo que es lo mismo $$\sum^N_{i=1}\epsilon_i=0,\qquad \sum^N_{i=1}\epsilon_ix_i=0$$ que da origen al denominado sistema de ecuaciones normales $$\sum^N_{i=1}y_i=N\beta_0+\beta_1\sum^N_{i=1}x_i$$ $$\sum^N_{i=1}y_ix_i=\beta_0\sum^N_{i=1}x_i+\beta_1\sum^N_{i=1}x_i^2$$
 
-Llamando $\hat{\beta_0}$ y $\hat{\beta_1}$ a la solución del sistema, esta es: $$\hat{\beta_1}=\frac{s_{xy}}{s^2_x}$$ $$\hat{\beta_0}=\bar{y}-\frac{s_{xy}}{s^2_x}\bar{x}$$
+Llamando $\widehat{\beta_0}$ y $\widehat{\beta_1}$ a la solución del sistema, esta es: $$\widehat{\beta_1}=\frac{s_{xy}}{s^2_x}$$ $$\widehat{\beta_0}=\bar{y}-\frac{s_{xy}}{s^2_x}\bar{x}$$
 
-Además, la matriz hessiana, en el punto ($\hat{\beta}_0,\hat{\beta_1}$), es $$H(\hat{\beta_0},\hat{\beta_1})= \left( \begin{array}{cc}
+Además, la matriz hessiana, en el punto ($\widehat{\beta}_0,\widehat{\beta_1}$), es $$H(\widehat{\beta_0},\widehat{\beta_1})= \left( \begin{array}{cc}
 2N & 2N\bar{x}\\
  & \\
 2N\bar{x} & 2\sum^N_{i=1}x^2_i\\
@@ -575,21 +575,67 @@ Además, la matriz hessiana, en el punto ($\hat{\beta}_0,\hat{\beta_1}$), es $$H
 \textcolor{red}{EJERCICIO: Plantear, resolver el sistema de ecuaciones normales y comprobar que la solución minimiza la función objetivo.}
 \ \\
 
-De esta forma la recta de regresión estimada queda en la forma \textcolor{blue}{$$\hat{y}-\bar{y}=\frac{s_{xy}}{s^2_x}(x-\bar{x})$$}
+De esta forma la recta de regresión estimada queda en la forma \textcolor{blue}{$$\widehat{y}-\bar{y}=\frac{s_{xy}}{s^2_x}(x-\bar{x})$$}
 
-Definimos ahora los residuos mínimo-cuadráticos como la diferencia entre el valor real observado de la variable dependiente y el predicho por la recta de regresión, es decir $$e_i=y_i-\hat{y}_i=(y_i-\bar{y})-\frac{s_{xy}}{s^2_x}(x_i-\bar{x})$$ con lo cual se puede concluir que el valor mínimo que alcanza la función $S(\beta_0,\beta_1)$ es $\sum^N_{i=1}e^2_i$.
-De la anterior expresión para los residuos se puede deducir lo siguiente: $$\sum^N_{i=1}e_i=0,\quad \bar{\hat{y}}=\bar{y},\qquad \sum^N_{i=1}x_ie_i=0,\qquad \sum^N_{i=1}(\hat{y}-\bar{y})e_i=0$$
+Definimos ahora los residuos mínimo-cuadráticos como la diferencia entre el valor real observado de la variable dependiente y el predicho por la recta de regresión, es decir $$e_i=y_i-\widehat{y}_i=(y_i-\bar{y})-\frac{s_{xy}}{s^2_x}(x_i-\bar{x})$$ con lo cual se puede concluir que el valor mínimo que alcanza la función $S(\beta_0,\beta_1)$ es $\sum^N_{i=1}e^2_i$.
+De la anterior expresión para los residuos se puede deducir lo siguiente: $$\sum^N_{i=1}e_i=0,\quad \bar{\widehat{y}}=\bar{y},\qquad \sum^N_{i=1}x_ie_i=0,\qquad \sum^N_{i=1}(\widehat{y}-\bar{y})e_i=0$$
 \ \\
 
 \textcolor{red}{EJERCICIO: Verificar estas igualdades partiendo de la expresión anterior para $e_i$.} 
 \ \\
 
-De dichas relaciones se puede concluir que $y_i=\hat{y}_i + e_i$, donde $\hat{y}_i$ es la parte estimada y $e_i$ es la parte residual debida a la regresión, siendo ambas incorreladas.
+De dichas relaciones se puede concluir que $y_i=\widehat{y}_i + e_i$, donde $\widehat{y}_i$ es la parte estimada y $e_i$ es la parte residual debida a la regresión, siendo ambas incorreladas.
 \ \\
 
 \textcolor{red}{EJERCICIO: Realizar la estimación m.c. en el modelo sin término constante: $Y = \beta_1X + \varepsilon$.}
-\section{COMPLEMENTO: Caso de Datos Repetidos}
+		\subsection*{COMPLEMENTO: Caso de Datos Repetidos}
 En muchas ocasiones la experiencia que se pretende estudiar se diseña de forma que, para cada valor fijado de la variable explicativa, se observan diversos valores de la variable dependiente. Nosotros nos referiremos a esta situación con el nombre de \textit{datos repetidos}.
 
-Si suponemos que son $d$, $d > 2$, los valores distintos de la variable explicativa fijados y que, para cada uno, se observan $n_i$ valores de la variable dependiente, los datos suelen presentarse en la forma
+Si suponemos que son $d$, $d > 2$, los valores distintos de la variable explicativa fijados y que, para cada uno, se observan $n_i$ valores de la variable dependiente, los datos suelen presentarse en la forma $$\begin{array}{c|cccc}
+x_1 & y_{11} & \cdots & \cdots & y_{1n_1} \\
+x_2 & y_{21} & \cdots & \cdots & y_{2n_2}  \\
+\vdots & \vdots & \vdots & \vdots & \vdots \\
+x_d & y_{d1} & \cdots & \cdots & y_{dn_d}  \\
+\end{array}$$
+
+Gráficamente
+
+El modelo se escribe en la forma $y_{ij}=\beta_0+\beta_1x_i+\epsilon_{ij},\, i=1,...,d;\, j=1,...,n_i$
+
+Notemos que no estamos tratando con un modelo distinto sino con el mismo anterior que se ha reescrito acorde con la estructura de los datos. No obstante, es interesante desarrollar de nuevo la estimación mínimo-cuadrática en esta forma para asentar mejor la idea de la regresión al comprobar qué es lo que hace el modelo en esta situación.
+
+La función que hay que minimizar se escribe ahora como $$S(\beta_0,\beta_1)=\sum^d_{i=1}\sum^{n_i}_{j=1}(y_{ij}-\beta_0-\beta_1x_i)^2$$
+
+Razonando igual que antes se llega al sistema de ecuaciones normales $$\sum^d_{i=1}n_i\bar{y}_i=N\beta_0+\beta_1\sum^d_{i=1}n_ix_i$$ $$\sum^d_{i=1}n_i\bar{y}_ix_i=\beta_0\sum^d_{i=1}n_ix_i+\beta_1\sum^d_{i=1}n_ix_i^2$$ cuya solución, obviamente, es la misma obtenida anteriormente.
+
+\textbf{En este caso la estimación considera la nube de puntos} $\mathbf{\{x_i,\bar{y}_i\}_{i=1,...,d}}$ \textbf{, tratando cada punto con la frecuencia} $\mathbf{n_i}$ \textbf{observada.}
+
+Asimismo las relaciones obtenidas para los residuos, $e_{ij}=y_{ij}-\widehat{y_i}$, siguen siendo ciertas $$\sum^d_{i=1}\sum^{n_i}_{j=1}e_{ij}=0,\quad \bar{\widehat{y}}=\bar{y}, \quad \sum^d_{i=1}\sum^{n_i}_{j=1}e_{ij}x_{ij}=0, \quad \sum^d_{i=1}\sum^{n_i}_{j=1}(\bar{\widehat{y}}-\bar{y})e_{ij}=0$$
+\ \\
+
+\textcolor{red}{EJERCICIO: Desarrollar la estimación mínimo-cuadrática del modelo y verificar las propiedades de los residuos.}
+
+		\subsection{Interpretación Geométrica del Método de Mínimos Cuadrados}
+El método de mínimos cuadrados tratado anteriormente admite una fácil y simple interpretación geométrica. Para expresar vectorialmente el conjunto de observaciones y predicciones definamos los vectores siguientes $$y=(y_1,...,y_N)^t,\qquad \mathbf{1}=(1,...,1)^t,\qquad x=(x_1,...,x_N)^t$$ $$\varepsilon=(\epsilon_1,...,\epsilon_N)^t,\qquad e=(e_1,...,e_N)^t,\qquad \widehat{y}=(\widehat{y}_1,...,\widehat{y}_N)^t$$
+
+Con esta notación el modelo queda en la forma $y=\beta_0\mathbf{1}+\beta_1x+\varepsilon$
+
+Estimar los parámetros por mínimos cuadrados ordinarios requiere encontrar constantes $\widehat{\beta}_0$ y $\widehat{\beta}_1$ tales que el módulo del vector $\varepsilon$ sea mínimo. Por lo tanto se trata de determinar un vector $\widehat{y}$, en el plano definido por los vectores $\mathbf{1}$ y $x$ en un espacio$N$-dimensional, tal que el módulo del vector sea $\varepsilon$ sea mínimo.
+
+La solución es tomar la proyección ortogonal del vector $y$ sobre este plano, ya que cualquier otro caso conduciría a un vector residual de módulo mayor. Con ello el vector $\varepsilon$ será perpendicular a todos los vectores de dicho plano, bastando para ello con que lo sean con los vectores que lo generan, o sea, los vectores $\mathbf{1}$ y $x$. Así tendrá
+lo que se traduce en $$\varepsilon'\mathbf{1}=0 \Leftrightarrow \sum^N_{i=1}\epsilon_i=0$$ $$\varepsilon'x=0 \Leftrightarrow \sum^N_{i=1}\epsilon_ix_i=0$$ lo cual conduce al sistema de ecuaciones normales obtenido anteriormente.
+
+Notemos asimismo que el triángulo resultante de la proyección indica que $\parallel y\parallel^2=\parallel e\parallel ^2+\parallel \widehat{y}\parallel ^2$ o, lo que es lo mismo, $$\sum^N_{i=1}y^2_i=\sum^N_{i=1}e_i^2+\sum^N_{i=1}\widehat{y}_i^2$$
+		\subsection{Propiedades de los Estimadores Mínimo-Cuadráticos de la Recta de Regresión}
+		\subsection{Estimación de $\sigma^2$. Varianza Residual}
+	\section{Estimación del Modelo por Máxima Verosimilitud}
+	\section{Distribución de los Estimadores}
+		\subsection{Distribución de $\widehat{\beta_1}$}
+		\subsection{Distribución de $\widehat{\beta_0}$}
+		\subsection{Distribución de $\widehat{\sigma^2}$}
+	\section{Descomposición de la variabilidad. Coeficiente de Determinación}
+		\subsection{Descomposición de la Variabilidad}
+		\subsection{Coeficiente de Determinación}
+		\subsection{Distribución de las Variabilidades Explicada y no Explicada}
+	\section{Predicción}
 \end{document}
