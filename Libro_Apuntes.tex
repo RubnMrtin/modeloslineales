@@ -4,6 +4,7 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{amssymb}
 \usepackage{multicol}
 \usepackage[usenames]{color}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
@@ -737,9 +738,114 @@ Recordemos que $\widehat{\beta}_1$ se puede expresar como $$\widehat{\beta}_1=\b
 		\subsection{Distribución de $\widehat{\beta_0}$}
 En este caso, como $$\widehat{\beta}_0=\beta_0+\sum^N_{i=1}\left[\dfrac{1}{N}-\bar{x}w_i\right]\epsilon_i$$ su distribución es normal de media $\beta_0$ y varianza $$\sigma^2\sum^N_{i=1}\left[\dfrac{1}{N}-\bar{x}w_i\right]^2=\sigma^2\left[\dfrac{1}{N}+\dfrac{\bar{x}^2}{NS^2_x}\right]$$
 		\subsection{Distribución de $\widehat{\sigma^2}$}
+La distribución del estimador de la varianza de los términos de error no es inmediata puesto que se basa en la distribución de formas cuadráticas normales. Por esta razón omitimos su demostración aquí, si bien posteriormente trataremos esta cuestrión más detalladamente. Concretamente se tiene que $$\dfrac{\sum^N_{i=1}e^2_i}{\sigma^2}=\dfrac{(N-2)\widehat{\sigma}^2}{\sigma^2}$$ se distribuye según una distribución $\chi^2$ centrada con $N-2$ grados de libertad.
+
+Los $N-2$ grados de libertad de los residuos proceden del número de datos menos el número de parámetros que han hecho falta estimar para calcular las medias en cada punto, pudiéndose entender mejor si consideramos que los $N$ residuos no son independientes ya que los residuos poseen dos restricciones dadas por $$\sum^N_{i=1}e_i=0\quad ,\quad \sum^N_{i=1}e_ix_i=0$$ con lo cual hay sólo $N-2$ residuos independientes, que corresponden a los $N-2$ grados de libertad.
+
+Además puede demostrarse que tanto $\widehat{\beta}_0$ como $\widehat{\beta}_1$ son independientes de $\displaystyle\sum^N_{i=1}e^2_i$ (si bien ello conlleva estudiar independencia de formas cuadráticas y lineales y lo dejaremos par el apartado de regresión múltiple).
 	\section{Descomposición de la variabilidad. Coeficiente de Determinación}
 		\subsection{Descomposición de la Variabilidad}
+Una vez estimados los parámetros del modelo nos planteamos la bondad de tal estimación.
+
+Ello se traduce en averiguar hasta qué punto el modelo es capaz de reproducir el comportamiento de la variable dependiente, que es el objeto del estudio; es decir, qué parte de la variación de la variable dependiente viene explicada por la recta estimada.
+
+Para ello hemos de proceder a descomponer la variabilidad de la variable explicada e intentar darle un significado a dicha descomposición(cuestión que es común a todos los modelos lineales). Lo haremos para el modelo con término constante.
+
+Sabemos que $y_i=\widehat{y}_i+e_i,\ i=1,...,N$, de donde $y_i-\bar{y}=\widehat{y}_i-\bar{y}+e_i,\ i=1,...,N$. Elevando al cuadrado $$(y_i-\bar{y})^2=(\widehat{y}_i-\bar{y})^2+e_i^2+2(\widehat{y}_i-\bar{y})e_i;\quad i=1,...,N$$ y sumando en ambos miembros 
+\begin{center}
+$\displaystyle\sum^N_{i=1}(y_i-\bar{y})^2=\displaystyle\sum^N_{i=1}(\widehat{y}_i-\bar{y})^2+\displaystyle\sum^N_{i=1}e_i^2\qquad$ \textcolor{red}{$\left(\mathrm{ya\ que} \displaystyle\sum^N_{i=1}(\widehat{y}_i-\bar{y})e_i=0 \right)$}
+\end{center}
+
+Esta expresión descompone la variabilidad de la variable dependiente (VT) en dos términos: el segundo de ellos refleja la parte de variabilidad que no es explicada por la regresión puesto que es la variabilidad de los residuos, que llamaremos variabilidad no explicada (VNE), mientras que el primero de ellos
+refleja toda la variabilidad de la variable dependiente que ha sido explicada por la regresión (observemos cómo ese primer término no es más que la variabilidad de la variable predicha puesto que $\bar{\widehat{y}}=\bar{y}$) y la denominaremos variabilidad explicada (VE).
+\ \\
+
+\textcolor{red}{NOTA: En el caso de modelo sin término constante la descomposición es la dada en la interpretación geométrica del método de mínimos cuadrados, es decir $\displaystyle\sum^N_{i=1}y^2_i=\displaystyle\sum^N_{i=1}e^2_i+\displaystyle\sum^N_{i=1}\widehat{y}^2_i$.}
+\ \\
+
+Merece especial atención el caso de datos repetidos puesto que en este ambiente puede comprobarse cómo la parte residual se divide a su vez en otros dos términos.
+
+La idea es que el hecho de que para cada valor de $x_i$, la distribución de $Y$ se sustituya por la media condicionada $\bar{y}_i$, debe traducirse en la introducción de un error adicional. Ese error debe ser el de la representatividad de dicha media condicionada en esa distribución. Por lo tanto es esperable la existencia de dos fuentes de error: una debida a la falta de ajuste de la media condicionada a la recta, y otra debida a la variabilidad de cada distribución condicionada entorno a su media.
+
+Razonando igual que antes $$y_{ij}=\widehat{y}_i+e_{ij}\quad ; \quad i=1,..d\quad , \quad j=1,...,n_i$$ de donde $$y_{ij}-\bar{y}=\widehat{y}_i-\bar{y}+e_{ij}\quad ; \quad i=1,..d\quad , \quad j=1,...,n_i$$
+
+Elevando al cuadrado y sumando en ambos miembros se tiene
+\begin{center}
+$\displaystyle\sum^d_{i=1}\displaystyle\sum^{n_i}_{j=1}(y_{ij}-\bar{y})^2=\displaystyle\sum^d_{i=1}n_i(\widehat{y}_i-\bar{y})^2+\displaystyle\sum^d_{i=1}\displaystyle\sum^{n_i}_{j=1}e^2_{ij}\quad$ \textcolor{red}{$\left(\displaystyle\sum^d_{i=1}\displaystyle\sum^{n_i}_{j=1}(\widehat{y}_i-\bar{y})e_{ij}=0\right) $}
+\end{center}
+
+Esta es la descomposición obtenida anteriormente. A continuación veamos que la variabilidad residual puede descomponerse a su vez. Partamos de los residuos $$e_{ij}=y_{ij}-\widehat{y}_i=y_{ij}-\bar{y}_i+\bar{y}_i-\widehat{y}_i\quad ;\quad i=1,...,d\quad ,\quad j=1,...,n_i$$ de donde $$e^2_{ij}=(y_{ij}-\bar{y}_i)^2+(\bar{y}_i-\widehat{y}_i)^2+2(y_{ij}-\bar{y}_i)(\bar{y}_i-\widehat{y}_i)\quad ;\quad i=1,...,d\quad ,\quad j=1,...,n_i$$ y sumando en ambos miembros $$\sum^d_{i=1}\sum^{n_i}_{j=1}e^2_{ij}=\sum^d_{i=1}\sum^{n_i}_{j=1}(y_{ij}-\bar{y}_i)^2+\sum^d_{i=1}\sum^{n_i}_{j=1}(\bar{y}_i-\widehat{y}_i)^2$$ donde se ha usado que $$\sum^d_{i=1}\sum^{n_i}_{j=1}(y_{ij}-\bar{y}_i)(\bar{y}_i-\widehat{y}_i)=\sum^d_{i=1}(\bar{y}_i-\widehat{y}_i)\sum^{n_i}_{j=1}(y_{ij}-\bar{y}_i)=0$$
+
+Con ello tenemos $$\mathrm{VNE}=\sum^d_{i=1}\sum^{n_i}_{j=1}(y_{ij}-\bar{y}_i)^2+\sum^d_{i=1}n_i(\bar{y}_i-\widehat{y}_i)^2$$
+
+Así pues la variabilidad residual se descompone en dos términos. El segundo marca las diferencias al cuadrado entre los valores predichos, para cada valor $x_i$ de la variable explicativa, y el valor que se prediciría sin la necesidad de la recta(media condicionada $\bar{y}_i$) y por lo tanto determina la falta de ajuste de la nube de puntos a la recta estimada. El primero indica las diferencias, dentro de cada grupo, de los valores observados y su media condicionada y, por lo tanto, es un error intrínseco a los datos que viene dado por representar cada distribución condicionada $y | x_i$ por medio de su media condicionada.
+
+En resumen, la variabilidad residual es el compendio del error intrínseco a los datos y el determinado por la falta de linealidad, siendo esta descomposición la base del contraste de linealidad que se verá posteriormente.
 		\subsection{Coeficiente de Determinación}
+La evaluación global de la recta estimada se puede hacer mediante la varianza residual, que es un índice de la precisión del modelo. Sin embargo esta medida no es útil para tal fin puesto que depende de las unidades de medida en las que venga expresada la variable dependiente. Una medida más adecuada del
+ajuste sería la proporción de variabilidad explicada frente a la variabilidad total, con lo cual tendremos un valor adimensional que nos dirá cuánta parte de la variabilidad total es explicada por el modelo.
+
+Así se define el coeficiente de determinación como $$R^2=\dfrac{\mathrm{VE}}{\mathrm{VT}}=\dfrac{\displaystyle\sum^N_{i=1}(\widehat{y}_i-\bar{y})^2}{\displaystyle\sum^N_{i=1}(y_i-\bar{y})^2}=1-\dfrac{\mathrm{VNE}}{\mathrm{VT}}=1-\dfrac{\displaystyle\sum^N_{i=1}e^2_i}{\displaystyle\sum^N_{i=1}(y_i-\bar{y})^2}$$
+
+Es inmediato comprobar que dicho coeficiente toma valores entre 0 y 1. Además, cuanto más próximo esté a uno indicará que mayor es la parte de variabilidad de la variable dependiente que queda explicada por la regresión, siendo éste un indicio de un buen comportamiento de la estimación. Por el contrario, cuanto más próximo esté a cero indicará que el modelo estimado no es óptimo para explicar el comportamiento de la variable explicada.
+
+Asimismo se puede demostrar que, en el caso de la regresión lineal simple univariante, el coeficiente de determinación coincide con el cuadrado del coeficiente de correlación lineal entre las variables explicada y explicativa.
+
+En efecto, de $\widehat{y}_i-\bar{y}=\widehat{\beta}_1(x_i-\bar{x}),\ i=1,...,N$, se tiene $$(\widehat{y}_i-\bar{y})^2=\widehat{\beta}_1^2(x_i-\bar{x})^2\quad ;\quad i=1,...,N$$ de donde 
+\begin{center}
+$\displaystyle\sum^N_{i=1}(\widehat{y}_i-\bar{y})^2=\widehat{\beta}_1^2\displaystyle\sum^N_{i=1}(x_i-\bar{x})^2=\dfrac{Ns^2_{xy}}{s^2_x}\qquad$ \textcolor{red}{$\left(\mathrm{VE}=\widehat{\beta}^2_1Ns^2_x\right)$}
+\end{center}
+
+Con ello $$R^2=\dfrac{\mathrm{VE}}{\mathrm{VT}}=\dfrac{\displaystyle\sum^N_{i=1}(\widehat{y}_i-\bar{y})^2}{\displaystyle\sum^N_{i=1}(y_i-\bar{y})^2}=\dfrac{\dfrac{Ns^2_{xy}}{s^2_x}}{Ns^2_y}=\dfrac{s^2_{xy}}{s^2_xs^2_y}=r^2_{xy}$$
+
+A partir de esta identidad es inmediato deducir:
+\begin{itemize}
+\item $0 \leq R^2 \leq 1$
+\item $R^2=0\Leftrightarrow S_{xy}=0\Leftrightarrow r=0$. En tal caso se tiene que no existe dependencia lineal entre ambas variables, por lo que el conocimiento de $X$ no aporta ninguna información a la estimación de posibles valores de $Y$. En tal caso la única estimación posible sobre el comportamiento de $Y$ sería su media, quedando la recta de regresión en la forma $\widehat{y}=\bar{y}$
+\item $R^2=1\Leftrightarrow r_{xy}\pm 1$. En este caso la regresión entre $X$ e $Y$ es exacta y hay una dependencia lineal completa entre ambas variables
+\end{itemize}
+\ \\
+
+\textcolor{red}{EJERCICIO: ¿Cuál es la expresión de $R^2$ en el modelo sin término constante?}
+\ \\
+
 		\subsection{Distribución de las Variabilidades Explicada y no Explicada}
+Puesto que $\mathrm{VNE}=\displaystyle\sum^N_{i=1}e^2_i$, entonces $\dfrac{\mathrm{VNE}}{\sigma^2}\rightsquigarrow \chi^2_{N-2}$
+
+Por otro lado se verifica que $\mathrm{VE}=\displaystyle\sum^N_{i=1}(\widehat{y}_i\bar{y})^2=\widehat{\beta}^2_1NS^2_x$
+
+Como $\widehat{\beta}_1\rightsquigarrow N_1\left[\beta_1;\dfrac{\sigma^2}{Ns^2_x}\right]$, entonces $\sqrt{NS^2_x}\widehat{\beta}_1\rightsquigarrow N_1\left[\sqrt{NS^2_x}\beta_1;\sigma^2\right]$, por lo que $$\dfrac{\mathrm{VE}}{\sigma^2}\rightsquigarrow \chi^2_1(\delta)\quad \mathrm{siendo}\quad \delta=\dfrac{Ns^2_x\beta^2_1}{\sigma^2}$$
+
+Además, puesto que $\widehat{\beta}_1$ y $\widehat{\sigma}^2$ son independientes se deduce que ambas variables son independientes y que $$\dfrac{\mathrm{VE}}{\frac{\mathrm{VNE}}{N-2}}\rightsquigarrow F_{1,N-2}(\delta)$$
 	\section{Predicción}
+Una de las utilidades de un modelo de regresión es predecir el comportamiento de la variable dependiente conocidos los valores de la variable explicativa. Dicho conocimiento puede referirse bien a la estimación de la media de la distribución de la variable explicada para cada nuevo valor de la variable independiente o bien predecir futuros valores de dicha variable.
+
+Dicho en otras palabras, si $x_p$ es un nuevo valor de la variable explicativa(no ha contribuido en el proceso de estimación), se pretende o bien obtener el valor predicho de la variable dependiente conocido $x_p\ (\widehat{y}_p)$ o bien estimar el valor medio de la variable dependiente, conocido $x_p\ (\widehat{E[y_p]})$.
+
+Ambas cuestiones se resuelven de idéntica manera: sustituyendo en la recta de regresión el valor dado de la variable explicativa, puesto que la predicción mediante $\widehat{y}_p$ es insesgada. En efecto, el valor exacto de la variable dependiente sería $$y_p=\beta_0+\beta_1x_p+\epsilon_p$$ donde $\epsilon_p$ es una perturbación que verifica las mismas hipótesis que las del modelo. Así el valor medio esperado para $y_p$ sería $$E[y_p]=\beta_0+\beta_1x_p$$ que habría que estimar pues viene en función de los parámetros. Dicha estimación sería $$\widehat{E[y_p]}=\widehat{\beta}_0+\widehat{\beta}_1x_p$$ que coincide, obviamente, con el valor que la recta predice para la variable dependiente.
+
+No obstante la precisión(medida mediante el error cuadrático medio) no es la misma en los dos casos, como vemos a continuación.
+		\subsection*{Precisión en el Caso de la Estimación de la Media}
+En este caso el error cuadrático medio viene dado por la varianza del estimador $\widehat{E[y_p]}$. Como $$\widehat{E[y_p]}-E[y_p]=(\widehat{\beta}_0-\beta_0)+(\widehat{\beta}_1-\beta_1)x_p$$ se tiene
+\begin{equation*}
+\begin{split}
+Var[\widehat{E[y_p]}]&=E[(\widehat{E[y_p]}-E[y_p])^2]=Var[\widehat{\beta}_0]+x^2_pVar[\widehat{\beta}_1]+2x_pCov[\widehat{\beta}_0,\widehat{\beta}_1]\\
+&=\sigma^2\left\lbrace\left[\dfrac{1}{N}+\dfrac{\bar{x}^2}{Ns^2_x}\right]+\dfrac{x^2_p}{Ns^2_x}-2\dfrac{x_p\bar{x}}{Ns^2_x}\right\rbrace=\sigma^2\left[\dfrac{1}{N}+\dfrac{(\bar{x}-x_p)^2}{Ns^2_x}\right]
+\end{split}
+\end{equation*}
+expresión que depende de la distancia del punto $x_p$ a la media de la variable explicativa.
+		\subsection*{Precisión en el Caso de la Predicción de un Nuevo Valor}
+Supongamos ahora que deseamos predecir el valor de la variable dependiente ($y_p$) para un valor dado ($x_p$) de la variable independiente. Evidentemente dicho valor yp no ha contribuido en la estimación de los parámetros del modelo. Dicha predicción se efectúa(al igual que en el caso de la estimación de la media de la variable respuesta) sustituyendo el valor de $x_p$ en la recta de regresión estimada.
+
+No obstante, el error de la predicción vendrá ahora dado por la desviación cuadrática media de la predicción a la variable respuesta, o sea $E[(y_p-\widehat{y}_p)^2]$. Ahora bien,
+\begin{equation*}
+\begin{split}
+E[(y_p-\widehat{y}_p)^2]&=E\left[\left\lbrace(\beta_0-\widehat{\beta}_0)+(\beta_1-\widehat{\beta}_1)x_p+\epsilon_p\right\rbrace^2\right]\\
+&=Var[\widehat{\beta}_0]+Var[\widehat{\beta}_1]x^2_p+Var[\epsilon_p]+2x_pCov[\widehat{\beta}_0,\widehat{\beta}_1]-2Cov[\widehat{\beta}_0,\epsilon_p]-2x_pCov[\widehat{\beta}_1,\epsilon_p]\\
+&=\sigma^2\left\lbrace\left[\dfrac{1}{N}+\dfrac{\bar{x}^2}{Ns^2_x}\right]+\dfrac{x^2_p}{Ns^2_x}+1-\dfrac{2x_p\bar{x}}{Ns^2_x}\right\rbrace=\sigma^2\left[1+\dfrac{1}{N}+\dfrac{(\bar{x}-x_p)^2}{Ns^2_x}\right]
+\end{split}
+\end{equation*}
+donde se ha usado que $y_p$ es independiente de $\widehat{\beta}_0$ y $\widehat{\beta}_1$ pues no intervino en su estimación.
+
+Observamos que la precisión de la predicción es la suma de la varianza de la estimación de la media de la variable dependiente y la varianza de la propia variable alrededor de su media teórica.
 \end{document}
