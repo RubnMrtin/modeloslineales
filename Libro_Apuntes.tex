@@ -3,6 +3,8 @@
 \usepackage[spanish]{babel}
 \usepackage{graphicx}
 \usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{multicol}
 \usepackage[usenames]{color}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \author{Rubén Martín}
@@ -562,12 +564,12 @@ Matemáticamente hablando el problema se traduce en minimizar la función de dos
 
 Para la resolución técnica se deriva la función anterior respecto de los parámetros y se plantea el sistema de ecuaciones  $$\frac{\partial S(\beta_0,\beta_1)}{\partial \beta_0}=0, \qquad \frac{\partial S(\beta_0,\beta_1)}{\partial \beta_1}=0$$ resultando así $$-2\sum^N_{i=1}(y_i\beta_0-\beta_1x_i)=0,\qquad -2\sum^N_{i=1}(y_i-\beta_0-\beta_1x_i)x_i=0$$ o lo que es lo mismo $$\sum^N_{i=1}\epsilon_i=0,\qquad \sum^N_{i=1}\epsilon_ix_i=0$$ que da origen al denominado sistema de ecuaciones normales $$\sum^N_{i=1}y_i=N\beta_0+\beta_1\sum^N_{i=1}x_i$$ $$\sum^N_{i=1}y_ix_i=\beta_0\sum^N_{i=1}x_i+\beta_1\sum^N_{i=1}x_i^2$$
 
-Llamando $\widehat{\beta_0}$ y $\widehat{\beta_1}$ a la solución del sistema, esta es: $$\widehat{\beta_1}=\frac{s_{xy}}{s^2_x}$$ $$\widehat{\beta_0}=\bar{y}-\frac{s_{xy}}{s^2_x}\bar{x}$$
+Llamando $\widehat{\beta_0}$ y $\widehat{\beta_1}$ a la solución del sistema, esta es: $$\widehat{\beta_1}=\frac{s_{xy}}{s^2_x}$$ $$\widehat{\beta}_0=\bar{y}-\frac{s_{xy}}{s^2_x}\bar{x}$$
 
-Además, la matriz hessiana, en el punto ($\widehat{\beta}_0,\widehat{\beta_1}$), es $$H(\widehat{\beta_0},\widehat{\beta_1})= \left( \begin{array}{cc}
+Además, la matriz hessiana, en el punto ($\widehat{\beta}_0,\widehat{\beta}_1$), es $$H(\widehat{\beta}_0,\widehat{\beta}_1)= \left( \begin{array}{cc}
 2N & 2N\bar{x}\\
  & \\
-2N\bar{x} & 2\sum^N_{i=1}x^2_i\\
+2N\bar{x} & 2\displaystyle\sum^N_{i=1}x^2_i\\
  & 
 \end{array} \right)$$ matriz que claramente es definida positiva, gracias a la hipótesis establecida sobre la variable explicativa, puesto que su determinante es $4N^2s^2_x$.
 \ \\
@@ -577,7 +579,7 @@ Además, la matriz hessiana, en el punto ($\widehat{\beta}_0,\widehat{\beta_1}$)
 
 De esta forma la recta de regresión estimada queda en la forma \textcolor{blue}{$$\widehat{y}-\bar{y}=\frac{s_{xy}}{s^2_x}(x-\bar{x})$$}
 
-Definimos ahora los residuos mínimo-cuadráticos como la diferencia entre el valor real observado de la variable dependiente y el predicho por la recta de regresión, es decir $$e_i=y_i-\widehat{y}_i=(y_i-\bar{y})-\frac{s_{xy}}{s^2_x}(x_i-\bar{x})$$ con lo cual se puede concluir que el valor mínimo que alcanza la función $S(\beta_0,\beta_1)$ es $\sum^N_{i=1}e^2_i$.
+Definimos ahora los residuos mínimo-cuadráticos como la diferencia entre el valor real observado de la variable dependiente y el predicho por la recta de regresión, es decir $$e_i=y_i-\widehat{y}_i=(y_i-\bar{y})-\frac{s_{xy}}{s^2_x}(x_i-\bar{x})$$ con lo cual se puede concluir que el valor mínimo que alcanza la función $S(\beta_0,\beta_1)$ es $\displaystyle\sum^N_{i=1}e^2_i$.
 De la anterior expresión para los residuos se puede deducir lo siguiente: $$\sum^N_{i=1}e_i=0,\quad \bar{\widehat{y}}=\bar{y},\qquad \sum^N_{i=1}x_ie_i=0,\qquad \sum^N_{i=1}(\widehat{y}-\bar{y})e_i=0$$
 \ \\
 
@@ -629,18 +631,18 @@ Notemos asimismo que el triángulo resultante de la proyección indica que $\par
 		\subsection{Propiedades de los Estimadores Mínimo-Cuadráticos de la Recta de Regresión}
 \underline{\textbf{Los estimadores son lineales}}
 
-A partir de la expresión de $\widehat{\beta}_1$ podemos escribir: $$\widehat{\beta}_1=\dfrac{s_{xy}}{s^2_x}=\dfrac{\sum^N_{i=1}(x_i-\bar{x})(y_i-\bar{y})}{Ns^2_x}=\dfrac{\sum^N_{i=1}(x_i-\bar{x})y_i}{Ns^2_x}=\sum^N_{i=1}w_iy_i,\quad \mathrm{donde}\quad w_i=\dfrac{x_i-\bar{x}}{Ns^2_x}$$
+A partir de la expresión de $\widehat{\beta}_1$ podemos escribir: $$\widehat{\beta}_1=\dfrac{s_{xy}}{s^2_x}=\dfrac{\displaystyle\sum^N_{i=1}(x_i-\bar{x})(y_i-\bar{y})}{Ns^2_x}=\dfrac{\displaystyle\sum^N_{i=1}(x_i-\bar{x})y_i}{Ns^2_x}=\displaystyle\sum^N_{i=1}w_iy_i,\quad \mathrm{donde}\quad w_i=\dfrac{x_i-\bar{x}}{Ns^2_x}$$
 
 Observamos por tanto que $\widehat{\beta}_1$ es un \textbf{estimador residual} en las variables $y_i$
 
 Usando la expresión del modelo, tenemos 
 \begin{center}
-$\sum^N_{i=1}w_iy_i=\sum^N_{i=1}(\beta_0+\beta_1x_i+\epsilon_i)=\beta_1+\sum^N_{i=1}w_i\epsilon_i\qquad$ \textcolor{red}{$\sum^N_{i=1}w_i=0,\: \sum^N_{i_1}w_ix_i=1$}
+$\displaystyle\sum^N_{i=1}w_iy_i=\displaystyle\sum^N_{i=1}(\beta_0+\beta_1x_i+\epsilon_i)=\beta_1+\displaystyle\sum^N_{i=1}w_i\epsilon_i\qquad$ \textcolor{red}{$\displaystyle\sum^N_{i=1}w_i=0,\: \displaystyle\sum^N_{i_1}w_ix_i=1$}
 \end{center}
 
 Así pues, $\widehat{\beta}_1$ también puede expresarse como \textbf{combinación lineal} de las variables de perturbación $\epsilon_i$.
 
-Por otro lado $$\widehat{\beta}_0=\bar{y}-\widehat{\beta}_1\bar{x}=\dfrac{1}{N}\sum^N_{i=1}y_i-\bar{x}\sum^N_{i=1}w_iy_i=\sum^N_{i=1}\left[\dfrac{1}{N}-\bar{x}w_i\right] y_i=\sum^N_{i=1}\left[\dfrac{1}{N}-\bar{x}w_i\right] (\beta_0+\beta_1x_i+\epsilon_i)=\beta_0+\sum^N_{i=1}\left[\dfrac{1}{N}-\bar{x}w_i\right]\epsilon_i$$ donde se ha usado ahora que \textcolor{red}{$\sum^N_{i=1}\left[\dfrac{1}{N}-\bar{x}w_i\right]=1$} y \textcolor{red}{$\sum^N_{i=1}\left[\dfrac{1}{N}-\bar{x}w_i\right]x_i=0$}
+Por otro lado $$\widehat{\beta}_0=\bar{y}-\widehat{\beta}_1\bar{x}=\dfrac{1}{N}\sum^N_{i=1}y_i-\bar{x}\sum^N_{i=1}w_iy_i=\sum^N_{i=1}\left[\dfrac{1}{N}-\bar{x}w_i\right] y_i=\sum^N_{i=1}\left[\dfrac{1}{N}-\bar{x}w_i\right] (\beta_0+\beta_1x_i+\epsilon_i)=\beta_0+\sum^N_{i=1}\left[\dfrac{1}{N}-\bar{x}w_i\right]\epsilon_i$$ donde se ha usado ahora que \textcolor{red}{$\displaystyle\sum^N_{i=1}\left[\dfrac{1}{N}-\bar{x}w_i\right]=1$} y \textcolor{red}{$\displaystyle\sum^N_{i=1}\left[\dfrac{1}{N}-\bar{x}w_i\right]x_i=0$}
 
 Por tanto, $\widehat{\beta}_0$ también es combinación lineal tanto de las variables $y_i$ como de las perturbaciones $\epsilon_i$.
 \ \\
@@ -651,12 +653,89 @@ De las relaciones anteriores se deduce inmediatamente la insesgadez de ambos est
 \ \\
 
 \underline{\textbf{Varianzas y covarianza de los estimadores}}
-Como $\widehat{\beta}_1$ es un estimador insesgado para $\beta_1$ se tiene $$Var[\widehat{\beta}_1]=E[(\widehat{\beta}_1-\beta_1)^2]=E\left[\left(\sum^N_{i=1}w_i\epsilon_i \right) ^2\right] =E\left[\sum^N_{i=1}w^2_i\epsilon^2_i+\sum^N_{\begin{split}i,&j=1\\&i \neq j \end{split}}w_iw_j\epsilon_i\epsilon_j\right]=\sum^N_{i=1}w_i^2E[\epsilon^2_i]+\sum^N_{\begin{split}i,&j=1\\&i \neq j \end{split}}w_iw_jE[\epsilon_i\epsilon_j]=$$$$=\sigma^2\sum^N_{i=1}w^2_i=\sigma^2\sum^N_{i=1}\dfrac{(x_i-\bar{x})^2}{N^2(s^2_x)^2}=\dfrac{\sigma^2}{Ns^2_x}$$
+
+Como $\widehat{\beta}_1$ es un estimador insesgado para $\beta_1$ se tiene $$Var[\widehat{\beta}_1]=E[(\widehat{\beta}_1-\beta_1)^2]=E\left[\left(\sum^N_{i=1}w_i\epsilon_i \right) ^2\right] =E\left[\sum^N_{i=1}w^2_i\epsilon^2_i+\sum^N_{i,j=1\atop i\ne j}w_iw_j\epsilon_i\epsilon_j\right]=\sum^N_{i=1}w_i^2E[\epsilon^2_i]+\sum^N_{i,j=1\atop i\ne j}w_iw_jE[\epsilon_i\epsilon_j]=$$$$=\sigma^2\sum^N_{i=1}w^2_i=\sigma^2\sum^N_{i=1}\dfrac{(x_i-\bar{x})^2}{N^2(s^2_x)^2}=\dfrac{\sigma^2}{Ns^2_x}$$
+
+\begin{itemize}
+\item El error de estimación es inversamente proporcional a la dispersión de los valores de la variable $X$
+\item El error de estimación es directamente proporcional a $\sigma^2$ o variabilidad intrínseca de la variable respuesta para cada de $X$ fijo
+\end{itemize}
+
+Razonando de forma análoga a la anterior se tiene $$Var[\widehat{\beta}_0]=E[(\widehat{\beta}_0-\beta_0)^2]=E\left[\left(\sum^N_{i=1}\left[\dfrac{1}{N}-\bar{x}w_i\right]\epsilon_i\right)^2\right]=\cdots=\sigma^2\left[\dfrac{1}{N}+\dfrac{\bar{x}^2}{Ns^2_x}\right]$$
+
+Esta expresión muestra la varianza de $\widehat{\beta}_0$ como suma de dos términos: el primero es el error de estimación de la media de la variable $Y$, mientras que el segundo tiene en cuenta que el error de la estimación de la pendiente de la recta se transmite a la ordenada en el origen (recuérdese cómo se ha obtenido este estimador) en función de lo alejado que se encuentre $\bar{x}$ del origen.
+\ \\
+
+\textcolor{red}{EJERCICIO: Realizar el desarrollo del cálculo de $Var[\widehat{\beta}_0]$.}
+\ \\
+
+En cuanto a la covarianza tenemos 
+\begin{equation*}\begin{split}Cov[\widehat{\beta}_0,\widehat{\beta}_1]&=E[(\widehat{\beta}_0-\widehat{\beta}_0)(\widehat{\beta}_1-\widehat{\beta}_1)]=E\left[\left(\sum^N_{i=1}\left[\dfrac{1}{N}-\bar{x}w_i\right]\epsilon_i\right)\left(\sum^N_{j=1}w_j\epsilon_j\right)\right]\\&=E\left[\sum^N_{i=1}\sum^N_{j=1}\left[\dfrac{1}{N}-\bar{x}w_i\right]w_j\epsilon_i\epsilon_j\right]=\sum^N_{i=1}\sum^N_{j=1}\left[\dfrac{1}{N}-\bar{x}w_i\right]w_jE[\epsilon_i\epsilon_j]\\&=\sigma^2\sum^N_{i=1}\left[\dfrac{1}{N}-\bar{x}w_i\right]w_i=\sigma^2\sum^N_{i=1}\left[\dfrac{x_i-\bar{x}}{N^2s^2_x}-\bar{x}\dfrac{(x_i-\bar{x})^2}{N^2(s^2_x)^2}\right]=-\sigma^2\dfrac{\bar{x}}{Ns^2_x}\end{split} 
+\end{equation*}
+
+Con ello se observa que si $\bar{x}$ es mayor que cero entonces errores por exceso en la estimación de la pendiente produce errores por defecto en la estimación de la ordenada en el origen y recíprocamente ocurre otro tanto.
+\ \\
+
+\underline{\textbf{Eficiencia de los Estimadores}}
+
+Antes hemos comprobado cómo los estimadores mínimo cuadráticos de $\beta_0$ y $\beta_1$ son lineales en las observaciones de la variable dependiente (y también en las realizaciones de la variable de perturbación), y además son insesgados.
+
+Se puede demostrar que esos estimadores cumplen la propiedad de que entre todos los posibles estimadores lineales e insesgados que se puedan obtener para los parámetros (no tienen por qué existir solo ellos), son los que tienen menor varianza.
+
+Así pues son los estimadores de mínima varianza de entre todos los posibles estimadores lineales e
+insesgados de los parámetros (\textbf{BLUE}). Este resultado es una versión \textit{light} del Teorema de Gauss-Markov.
+\ \\
+
+\textcolor{red}{NOTA: La demostración se hará como complemento en la clase de grupo pequeño.}
 		\subsection{Estimación de $\sigma^2$. Varianza Residual}
+Nos planteamos a continuación la estimación de la varianza de las perturbaciones, $\sigma^2$. Con esa cantidad dispondremos de información sobre cuanta variabilidad del modelo deja de explicarse. Para ello partimos de los residuos estimados de la regresión $e_i=y_i-\widehat{y}_i$, ya que se pueden interpretar como realizaciones de las variables de perturbación.
+
+Recordando que $\widehat{y}_i=\widehat{\beta}_0+\widehat{\beta}_1x_i$, se tiene $e_i=(\beta_0-\widehat{\beta}_0)+(\beta_1-\widehat{\beta}_1)x_i+\epsilon_i,\ i=1,...,N$, con lo cual $E[e_i]=0,\ i=1,...,N$.
+
+Consideremos ahora la esperanza de los cuadrados de los residuos
+\begin{equation*}
+\begin{split}
+E[e^2_i]&=E\left[(\beta_0-\widehat{\beta}_0)^2+(\beta_1-\widehat{\beta}_1)^2x^2_i+\epsilon^2_i+2(\beta_0-\widehat{\beta}_0)(\beta_1-\widehat{\beta}_1)x_i+2(\beta_0-\widehat{\beta}_0)\epsilon_i+2(\beta_1-\widehat{\beta}_1)x_i\epsilon_i\right]\\
+&=Var[\widehat{\beta}_0]+Var[\widehat{\beta}_1]x^2_i+Var[\epsilon_i]+2Cov[\widehat{\beta}_0,\widehat{\beta}_1]x_i-2E[(\beta_0-\widehat{\beta}_0)\epsilon_i]-2E[(\beta_1-\widehat{\beta}_1)x_i\epsilon_i]
+\end{split}
+\end{equation*}
+y como $$E[(\widehat{\beta}_0-\beta_0)\epsilon_i]=\dfrac{\sigma^2}{N}-\dfrac{\bar{x}(x_i-\bar{x}\sigma^2}{Ns^2_x}\quad \mathrm{y} \quad E[(\widehat{\beta}_1-\beta_1)x_i\epsilon_i]=\dfrac{\sigma^2(x_i-\bar{x})x_i}{Ns^2_x}$$ se concluye $$E[e^2_i]=\sigma^2\left[1-\dfrac{1}{N}-\dfrac{(x_i-\bar{x})^2}{Ns^2_x}\right]=(N-2)\sigma^2,$$ de donde se deduce que un estimador insesgado de la varianza(la varianza residual) es $$\widehat{\sigma}^2=\sum^N_{i=1}\frac{e^2_i}{(N-2)}$$
+\ \\
+
+\textcolor{red}{EJERCICIO: Completar los cálculos anteriores y realizar la estimación de $\sigma^2$ para el modelo sin término constante.}
 	\section{Estimación del Modelo por Máxima Verosimilitud}
+Como ta se ha comentado anteriormente, la hipótesis de normalidad sobre los términos de error conlleva el hecho de que las variables $y_i$ sean normales e independientes, por lo que es inmediato construir la función de verosimilitud asociada a la muestra $\mathbf{y}=\{y_1,...,y_N\}$.
+$$\mathbb{L}_\mathbf{y}(\beta_0,\beta_1,\sigma^2)=(2\pi\sigma^2)^{\dfrac{N}{2}}exp\left(-\dfrac{1}{2\sigma^2}\sum^N_{i=1}[y_i-\beta_0-\beta_1x_i]^2\right)$$
+
+Nuestra idea es obtener los estimadores máximo-verosímiles para los parámetros $\beta_0,\beta_1$ y $\sigma^2$. Para ello hay que realizar la maximización de la anterior función y encontrar $\tilde{\beta}_0,\tilde{\beta}_1$ y $\tilde{\sigma}^2$ tales que $$\mathbb{L}_\mathbf{y}(\tilde{\beta}_0,\tilde{\beta}_1,\tilde{\sigma}^2)=\operatorname*{Sup}\limits_{\tilde{\beta}_0,\tilde{\beta}_1,\tilde{\sigma}^2}\mathbb{L}_\mathbf{y}(\beta_0,\beta_1,\sigma^2)$$
+
+Para ello, en principio, habrá que derivar la función de verosimilitud y encontrar sus puntos críticos. Asimismo, como trabajar con dicha función es algo complicado, lo que suele hacerse es considerar su logaritmo ya que, al ser el logaritmo creciente, conserva los puntos críticos. En este caso $$log(\mathbb{L}_\mathbf{y}(\tilde{\beta}_0,\tilde{\beta}_1,\tilde{\sigma}^2))=-\dfrac{N}{2}log(2\pi)-\dfrac{N}{2}log(\sigma^2)-\dfrac{1}{2\sigma^2}\sum^N_{i=1}[y_i-\beta_0-\beta_1x_i]^2$$
+
+Derivando respecto de los parámetros, se tiene \begin{multicols}{2}
+\begin{equation*}
+\dfrac{\partial log\mathbb{L}_\mathbf{y}(\tilde{\beta}_0,\tilde{\beta}_1,\tilde{\sigma}^2)}{\partial\beta_0}=\dfrac{1}{\sigma^2}\sum^N_{i=1}[y_i-\beta_0-\beta_1x_i]
+\end{equation*}
+
+\begin{equation*}
+\dfrac{\partial log\mathbb{L}_\mathbf{y}(\tilde{\beta}_0,\tilde{\beta}_1,\tilde{\sigma}^2)}{\partial\sigma^2}=-\dfrac{N}{2\sigma^2}+\dfrac{1}{2(\sigma^2)^2}\sum^N_{i=1}[y_i-\beta_0-\beta_1x_i]^2
+\end{equation*}
+
+\begin{equation*}
+\dfrac{\partial log\mathbb{L}_\mathbf{y}(\tilde{\beta}_0,\tilde{\beta}_1,\tilde{\sigma}^2)}{\partial\beta_1}=\dfrac{1}{\sigma^2}\sum^N_{i=1}[y_i-\beta_0-\beta_1x_i]x_i
+\end{equation*}
+\end{multicols}
+
+Igualando las dos primeras parciales a cero se tiene el siguiente sistema de ecuaciones $$\sum^N_{i=1}y_i=N\beta_0+\beta_1\sum^n_{i=1}x_i$$ $$\sum^N_{i=1}x_iy_i=\beta_0\sum^N_{i=1}x_i+\beta_1\sum^n_{i=1}x^2_i$$ que no es otro que el sistema de ecuaciones normales que se obtuvo tras la estimación por mínimos cuadrados ordinarios. Con ello los estimadores máximo verosímiles de $\beta_0$ y $\beta_1$ son los mismos que los mínimo cuadráticos.
+
+A continuación igualamos la tercera parcial a cero y sustituimos los parámetros $\beta_0$ y $\beta_1$ por los estimadores anteriores, concluyendo que el estimador máximo verosímil para $\sigma^2$ es $$\tilde{\sigma}^2=\dfrac{\displaystyle\sum^N_{i=1}e^2_i}{N}$$ que ya no coincide con el estimador de mínimos cuadrados, si bien están relacionados: $$\tilde{\sigma}^2=\dfrac{N-2}{N}\widehat{\sigma}^2$$
+
+Además este estimador no es insesgado ya que $$E[\tilde{\sigma}^2]=\dfrac{N-2}{N}\sigma^2$$
 	\section{Distribución de los Estimadores}
+El hecho de que los estimadores $\beta_0$ y $\beta_1$ se puedan expresar en términos de las perturbaciones de $\epsilon_i$ y que éstas sean, por hipótesis, variables aleatorias independientes e idénticamente distribuidas según una normal de media cero y varianza $\sigma^2$, permite obtener de forma rápida las distribuciones de dichos estimadores. En cuanto a la distribución de la varianza residual no tendremos una expresión para ella si bien, aunque lo demostraremos más adelante, sí es conocida la distribución de una cierta función suya.
 		\subsection{Distribución de $\widehat{\beta_1}$}
+Recordemos que $\widehat{\beta}_1$ se puede expresar como $$\widehat{\beta}_1=\beta_1+\sum^N_{i=1}w_i\epsilon_i,$$ con lo cual se distribuirá según una normal de media $\beta_1$ y de varianza $$\sum^N_{i=1}w^2_i\sigma^2=\dfrac{\sigma^2}{Ns^2_x}$$ puesto que es una combinación lineal de variables normales, independientes e idénticamente distribuidas.
 		\subsection{Distribución de $\widehat{\beta_0}$}
+En este caso, como $$\widehat{\beta}_0=\beta_0+\sum^N_{i=1}\left[\dfrac{1}{N}-\bar{x}w_i\right]\epsilon_i$$ su distribución es normal de media $\beta_0$ y varianza $$\sigma^2\sum^N_{i=1}\left[\dfrac{1}{N}-\bar{x}w_i\right]^2=\sigma^2\left[\dfrac{1}{N}+\dfrac{\bar{x}^2}{NS^2_x}\right]$$
 		\subsection{Distribución de $\widehat{\sigma^2}$}
 	\section{Descomposición de la variabilidad. Coeficiente de Determinación}
 		\subsection{Descomposición de la Variabilidad}
