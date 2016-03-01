@@ -180,7 +180,7 @@ MODELO LINEAL DE GAUSS MARKOV
 \end{center}
 
 \begin{itemize}
-\item $E[\epsilon]=0,Cov[\epsilon]=\sigma^2\mathbf{I}_N$
+\item $E[\epsilon]=0,\mathrm{Cov}[\epsilon]=\sigma^2\mathbf{I}_N$
 \item $\beta$ no aleatorio
 \item $X$ no aleatoria
 \begin{itemize}
@@ -504,8 +504,8 @@ Dada la estructura funcional impuesta del modelo, para cada valor $x_i$ fijo se 
 Notemos que en lo que hasta ahora se ha dicho ya hay una serie de hipótesis establecidas. Además de ellas, se añaden las siguientes hipótesis sobre las variables de perturbación y la variable explicativa o independiente:
 \begin{itemize}
 \item Las perturbaciones tienen media cero \textcolor{blue}{$$E[\epsilon_i]=0\ ;\ i=1,...,N$$}
-\item Las perturbaciones tienen varianza constante(hipótesis de homocedasticidad)\textcolor{blue}{$$Var[\epsilon_i]=\sigma^2\ ;\ i=1,...,N$$}
-\item Las perturbaciones son incorreladas entre sí(hipótesis de incorrelación) \textcolor{blue}{$$Cov[\epsilon_i,\epsilon_j]=E[\epsilon_i\epsilon_j]=0\ ;\ i,j=1,...,N\ (i\neq j)$$}
+\item Las perturbaciones tienen varianza constante(hipótesis de homocedasticidad)\textcolor{blue}{$$\mathrm{Var}[\epsilon_i]=\sigma^2\ ;\ i=1,...,N$$}
+\item Las perturbaciones son incorreladas entre sí(hipótesis de incorrelación) \textcolor{blue}{$$\mathrm{Cov}[\epsilon_i,\epsilon_j]=E[\epsilon_i\epsilon_j]=0\ ;\ i,j=1,...,N\ (i\neq j)$$}
 \item Los valores de la variable $X$ no son todos iguales, o sea, al menos hay dos observaciones distintas o, lo que es lo mismo, la variable \textcolor{blue}{$X$ es no degenerada}.
 \end{itemize}
 
@@ -523,8 +523,8 @@ Las hipótesis que atañen a las variables perturbación pueden ser formuladas e
 \begin{itemize}
 \item La esperanza de la respuesta depende linealmente de $X$: \textcolor{blue}{$E[y_i]=\beta_0 + \beta_1x_i\ ;\ i=1,...,N$}\\
 {\scriptsize Realmente deberíamos escribir $E[y_i | X=x_i]=\beta_0 + \beta_1x_i\ ;\ i=1,...,N$}
-\item La varianza de las variables $y_i$ es constante: \textcolor{blue}{$Var[y_i]=\sigma^2\ ;\ i=1,...,N$}
-\item Las observaciones $y_i$ son incorreladas entre sí: \textcolor{blue}{$Cov[y_i,y_j]=0\ ;\ i,j=1,...,N\ (i \neq j)$}
+\item La varianza de las variables $y_i$ es constante: \textcolor{blue}{$\mathrm{Var}[y_i]=\sigma^2\ ;\ i=1,...,N$}
+\item Las observaciones $y_i$ son incorreladas entre sí: \textcolor{blue}{$\mathrm{Cov}[y_i,y_j]=0\ ;\ i,j=1,...,N\ (i \neq j)$}
 \end{itemize}
 
 \textbf{Nota 1.2.} \textit{$\beta_0$ representa el valor medio de la variable $Y$ cuando la variable $X$ vale cero. Asimismo $\beta_1$ es el incremento que experimenta la media de $Y$ cuando $X$ aumenta en una unidad.}
@@ -655,23 +655,23 @@ De las relaciones anteriores se deduce inmediatamente la insesgadez de ambos est
 
 \underline{\textbf{Varianzas y covarianza de los estimadores}}
 
-Como $\widehat{\beta}_1$ es un estimador insesgado para $\beta_1$ se tiene $$Var[\widehat{\beta}_1]=E[(\widehat{\beta}_1-\beta_1)^2]=E\left[\left(\sum^N_{i=1}w_i\epsilon_i \right) ^2\right] =E\left[\sum^N_{i=1}w^2_i\epsilon^2_i+\sum^N_{i,j=1\atop i\ne j}w_iw_j\epsilon_i\epsilon_j\right]=\sum^N_{i=1}w_i^2E[\epsilon^2_i]+\sum^N_{i,j=1\atop i\ne j}w_iw_jE[\epsilon_i\epsilon_j]=$$$$=\sigma^2\sum^N_{i=1}w^2_i=\sigma^2\sum^N_{i=1}\dfrac{(x_i-\bar{x})^2}{N^2(s^2_x)^2}=\dfrac{\sigma^2}{Ns^2_x}$$
+Como $\widehat{\beta}_1$ es un estimador insesgado para $\beta_1$ se tiene $$\mathrm{Var}[\widehat{\beta}_1]=E[(\widehat{\beta}_1-\beta_1)^2]=E\left[\left(\sum^N_{i=1}w_i\epsilon_i \right) ^2\right] =E\left[\sum^N_{i=1}w^2_i\epsilon^2_i+\sum^N_{i,j=1\atop i\ne j}w_iw_j\epsilon_i\epsilon_j\right]=\sum^N_{i=1}w_i^2E[\epsilon^2_i]+\sum^N_{i,j=1\atop i\ne j}w_iw_jE[\epsilon_i\epsilon_j]=$$$$=\sigma^2\sum^N_{i=1}w^2_i=\sigma^2\sum^N_{i=1}\dfrac{(x_i-\bar{x})^2}{N^2(s^2_x)^2}=\dfrac{\sigma^2}{Ns^2_x}$$
 
 \begin{itemize}
 \item El error de estimación es inversamente proporcional a la dispersión de los valores de la variable $X$
 \item El error de estimación es directamente proporcional a $\sigma^2$ o variabilidad intrínseca de la variable respuesta para cada de $X$ fijo
 \end{itemize}
 
-Razonando de forma análoga a la anterior se tiene $$Var[\widehat{\beta}_0]=E[(\widehat{\beta}_0-\beta_0)^2]=E\left[\left(\sum^N_{i=1}\left[\dfrac{1}{N}-\bar{x}w_i\right]\epsilon_i\right)^2\right]=\cdots=\sigma^2\left[\dfrac{1}{N}+\dfrac{\bar{x}^2}{Ns^2_x}\right]$$
+Razonando de forma análoga a la anterior se tiene $$\mathrm{Var}[\widehat{\beta}_0]=E[(\widehat{\beta}_0-\beta_0)^2]=E\left[\left(\sum^N_{i=1}\left[\dfrac{1}{N}-\bar{x}w_i\right]\epsilon_i\right)^2\right]=\cdots=\sigma^2\left[\dfrac{1}{N}+\dfrac{\bar{x}^2}{Ns^2_x}\right]$$
 
 Esta expresión muestra la varianza de $\widehat{\beta}_0$ como suma de dos términos: el primero es el error de estimación de la media de la variable $Y$, mientras que el segundo tiene en cuenta que el error de la estimación de la pendiente de la recta se transmite a la ordenada en el origen (recuérdese cómo se ha obtenido este estimador) en función de lo alejado que se encuentre $\bar{x}$ del origen.
 \ \\
 
-\textcolor{red}{EJERCICIO: Realizar el desarrollo del cálculo de $Var[\widehat{\beta}_0]$.}
+\textcolor{red}{EJERCICIO: Realizar el desarrollo del cálculo de $\mathrm{Var}[\widehat{\beta}_0]$.}
 \ \\
 
 En cuanto a la covarianza tenemos 
-\begin{equation*}\begin{split}Cov[\widehat{\beta}_0,\widehat{\beta}_1]&=E[(\widehat{\beta}_0-\widehat{\beta}_0)(\widehat{\beta}_1-\widehat{\beta}_1)]=E\left[\left(\sum^N_{i=1}\left[\dfrac{1}{N}-\bar{x}w_i\right]\epsilon_i\right)\left(\sum^N_{j=1}w_j\epsilon_j\right)\right]\\&=E\left[\sum^N_{i=1}\sum^N_{j=1}\left[\dfrac{1}{N}-\bar{x}w_i\right]w_j\epsilon_i\epsilon_j\right]=\sum^N_{i=1}\sum^N_{j=1}\left[\dfrac{1}{N}-\bar{x}w_i\right]w_jE[\epsilon_i\epsilon_j]\\&=\sigma^2\sum^N_{i=1}\left[\dfrac{1}{N}-\bar{x}w_i\right]w_i=\sigma^2\sum^N_{i=1}\left[\dfrac{x_i-\bar{x}}{N^2s^2_x}-\bar{x}\dfrac{(x_i-\bar{x})^2}{N^2(s^2_x)^2}\right]=-\sigma^2\dfrac{\bar{x}}{Ns^2_x}\end{split} 
+\begin{equation*}\begin{split}\mathrm{Cov}[\widehat{\beta}_0,\widehat{\beta}_1]&=E[(\widehat{\beta}_0-\widehat{\beta}_0)(\widehat{\beta}_1-\widehat{\beta}_1)]=E\left[\left(\sum^N_{i=1}\left[\dfrac{1}{N}-\bar{x}w_i\right]\epsilon_i\right)\left(\sum^N_{j=1}w_j\epsilon_j\right)\right]\\&=E\left[\sum^N_{i=1}\sum^N_{j=1}\left[\dfrac{1}{N}-\bar{x}w_i\right]w_j\epsilon_i\epsilon_j\right]=\sum^N_{i=1}\sum^N_{j=1}\left[\dfrac{1}{N}-\bar{x}w_i\right]w_jE[\epsilon_i\epsilon_j]\\&=\sigma^2\sum^N_{i=1}\left[\dfrac{1}{N}-\bar{x}w_i\right]w_i=\sigma^2\sum^N_{i=1}\left[\dfrac{x_i-\bar{x}}{N^2s^2_x}-\bar{x}\dfrac{(x_i-\bar{x})^2}{N^2(s^2_x)^2}\right]=-\sigma^2\dfrac{\bar{x}}{Ns^2_x}\end{split} 
 \end{equation*}
 
 Con ello se observa que si $\bar{x}$ es mayor que cero entonces errores por exceso en la estimación de la pendiente produce errores por defecto en la estimación de la ordenada en el origen y recíprocamente ocurre otro tanto.
@@ -697,7 +697,7 @@ Consideremos ahora la esperanza de los cuadrados de los residuos
 \begin{equation*}
 \begin{split}
 E[e^2_i]&=E\left[(\beta_0-\widehat{\beta}_0)^2+(\beta_1-\widehat{\beta}_1)^2x^2_i+\epsilon^2_i+2(\beta_0-\widehat{\beta}_0)(\beta_1-\widehat{\beta}_1)x_i+2(\beta_0-\widehat{\beta}_0)\epsilon_i+2(\beta_1-\widehat{\beta}_1)x_i\epsilon_i\right]\\
-&=Var[\widehat{\beta}_0]+Var[\widehat{\beta}_1]x^2_i+Var[\epsilon_i]+2Cov[\widehat{\beta}_0,\widehat{\beta}_1]x_i-2E[(\beta_0-\widehat{\beta}_0)\epsilon_i]-2E[(\beta_1-\widehat{\beta}_1)x_i\epsilon_i]
+&=\mathrm{Var}[\widehat{\beta}_0]+\mathrm{Var}[\widehat{\beta}_1]x^2_i+\mathrm{Var}[\epsilon_i]+2\mathrm{Cov}[\widehat{\beta}_0,\widehat{\beta}_1]x_i-2E[(\beta_0-\widehat{\beta}_0)\epsilon_i]-2E[(\beta_1-\widehat{\beta}_1)x_i\epsilon_i]
 \end{split}
 \end{equation*}
 y como $$E[(\widehat{\beta}_0-\beta_0)\epsilon_i]=\dfrac{\sigma^2}{N}-\dfrac{\bar{x}(x_i-\bar{x}\sigma^2}{Ns^2_x}\quad \mathrm{y} \quad E[(\widehat{\beta}_1-\beta_1)x_i\epsilon_i]=\dfrac{\sigma^2(x_i-\bar{x})x_i}{Ns^2_x}$$ se concluye $$E[e^2_i]=\sigma^2\left[1-\dfrac{1}{N}-\dfrac{(x_i-\bar{x})^2}{Ns^2_x}\right]=(N-2)\sigma^2,$$ de donde se deduce que un estimador insesgado de la varianza(la varianza residual) es $$\widehat{\sigma}^2=\sum^N_{i=1}\frac{e^2_i}{(N-2)}$$
@@ -731,6 +731,24 @@ Igualando las dos primeras parciales a cero se tiene el siguiente sistema de ecu
 A continuación igualamos la tercera parcial a cero y sustituimos los parámetros $\beta_0$ y $\beta_1$ por los estimadores anteriores, concluyendo que el estimador máximo verosímil para $\sigma^2$ es $$\tilde{\sigma}^2=\dfrac{\displaystyle\sum^N_{i=1}e^2_i}{N}$$ que ya no coincide con el estimador de mínimos cuadrados, si bien están relacionados: $$\tilde{\sigma}^2=\dfrac{N-2}{N}\widehat{\sigma}^2$$
 
 Además este estimador no es insesgado ya que $$E[\tilde{\sigma}^2]=\dfrac{N-2}{N}\sigma^2$$
+
+Nos queda comprobar que la solución obtenida para el sistema de ecuaciones anterior maximiza la función de verosimilitud. En efecto, puede comprobarse que:$$\dfrac{\partial^2log\mathbb{L}}{\partial\beta^2_0}=-\dfrac{N}{\sigma^2}\quad ,\quad \dfrac{\partial^2log\mathbb{L}}{\partial\beta^2_1}=-\dfrac{\displaystyle\sum^N_{i=1}x^2_i}{\sigma^2}\quad ,\quad \dfrac{\partial^2log\mathbb{L}}{\partial\beta_1\partial\beta_0}=-\dfrac{\displaystyle\sum^N_{i=1}x_i}{\sigma^2}\quad ,\quad \dfrac{\partial^2log\mathbb{L}}{\partial\sigma^2\partial\beta_0}=-\dfrac{\displaystyle\sum^N_{i=1}[y_i-\beta_0-\beta_1x_i]}{(\sigma^2)^2}$$ $$\dfrac{\partial^2log\mathbb{L}}{\partial\sigma^2\partial\beta_1}=-\dfrac{\displaystyle\sum^N_{i=1}[y_i-\beta_0-\beta_1x_i]x_i}{(\sigma^2)^2}\quad ,\quad \dfrac{\partial^2log\mathbb{L}}{\partial(\sigma^2)^2}=\dfrac{N}{2(\sigma^2)^2}-\dfrac{\displaystyle\sum^N_{i=1}[y_i-\beta_0-\beta_1x_i]^2}{(\sigma^2)^3}$$ por lo que la matriz hessiana en el punto $\tilde{\beta}_0,\tilde{\beta}_1,\tilde{\sigma}^2$ queda en la forma $$H(\tilde{\beta}_0,\tilde{\beta}_1,\tilde{\sigma}^2)= \left( \begin{array}{ccc}
+-\dfrac{N}{\tilde{\sigma}^2} & -\displaystyle\sum^N_{i=1}\frac{x_i}{\tilde{\sigma}^2} & 0\\
+ & & \\
+-\displaystyle\sum^N_{i=1}\frac{x_i}{\tilde{\sigma}^2} & -\displaystyle\sum^N_{i=1}\frac{x_i}{\tilde{\sigma}^2} & 0\\
+ & & \\
+0 & 0 & -\dfrac{N}{2(\sigma^2)^2}\\
+\end{array} \right)=-\dfrac{1}{\tilde{\sigma}^2}\left( \begin{array}{ccc}
+N & N\bar{x} & 0\\
+ & & \\
+N\bar{x} & \displaystyle\sum^N_{i=1}x^2_i & 0\\
+ & & \\
+0 & 0 & \dfrac{N}{2\sigma^2}\\
+\end{array} \right)$$ 
+
+Esta matriz es definida negativa puesto que los menores principales son $$D_1=-\dfrac{N}{2\tilde{\sigma}^2}\quad , \quad D_2=\dfrac{N^2S^2_x}{(\tilde{\sigma}^2)^2}\quad y\quad D_3=-\dfrac{N^3S^2_x}{2(\tilde{\sigma}^2)^4}$$ verificándose que $(-1)^iD_i>0,i=1,2,3$.
+
+De esta forma hemos calculado el máximo relativo de la función de verosimilitud. Este máximo es absoluto ya que los límites de la función de verosimilitud en los extremos del espacio paramétrico, cuando $\beta_0$ y $\beta_1$ tienen a menos y más infinito y cuando $\sigma^2$ tiende a cero y a infinito, son cero.
 	\section{Distribución de los Estimadores}
 El hecho de que los estimadores $\beta_0$ y $\beta_1$ se puedan expresar en términos de las perturbaciones de $\epsilon_i$ y que éstas sean, por hipótesis, variables aleatorias independientes e idénticamente distribuidas según una normal de media cero y varianza $\sigma^2$, permite obtener de forma rápida las distribuciones de dichos estimadores. En cuanto a la distribución de la varianza residual no tendremos una expresión para ella si bien, aunque lo demostraremos más adelante, sí es conocida la distribución de una cierta función suya.
 		\subsection{Distribución de $\widehat{\beta_1}$}
@@ -829,19 +847,19 @@ No obstante la precisión(medida mediante el error cuadrático medio) no es la m
 En este caso el error cuadrático medio viene dado por la varianza del estimador $\widehat{E[y_p]}$. Como $$\widehat{E[y_p]}-E[y_p]=(\widehat{\beta}_0-\beta_0)+(\widehat{\beta}_1-\beta_1)x_p$$ se tiene
 \begin{equation*}
 \begin{split}
-Var[\widehat{E[y_p]}]&=E[(\widehat{E[y_p]}-E[y_p])^2]=Var[\widehat{\beta}_0]+x^2_pVar[\widehat{\beta}_1]+2x_pCov[\widehat{\beta}_0,\widehat{\beta}_1]\\
+\mathrm{Var}[\widehat{E[y_p]}]&=E[(\widehat{E[y_p]}-E[y_p])^2]=\mathrm{Var}[\widehat{\beta}_0]+x^2_p\mathrm{Var}[\widehat{\beta}_1]+2x_p\mathrm{Cov}[\widehat{\beta}_0,\widehat{\beta}_1]\\
 &=\sigma^2\left\lbrace\left[\dfrac{1}{N}+\dfrac{\bar{x}^2}{Ns^2_x}\right]+\dfrac{x^2_p}{Ns^2_x}-2\dfrac{x_p\bar{x}}{Ns^2_x}\right\rbrace=\sigma^2\left[\dfrac{1}{N}+\dfrac{(\bar{x}-x_p)^2}{Ns^2_x}\right]
 \end{split}
 \end{equation*}
 expresión que depende de la distancia del punto $x_p$ a la media de la variable explicativa.
 		\subsection*{Precisión en el Caso de la Predicción de un Nuevo Valor}
-Supongamos ahora que deseamos predecir el valor de la variable dependiente ($y_p$) para un valor dado ($x_p$) de la variable independiente. Evidentemente dicho valor yp no ha contribuido en la estimación de los parámetros del modelo. Dicha predicción se efectúa(al igual que en el caso de la estimación de la media de la variable respuesta) sustituyendo el valor de $x_p$ en la recta de regresión estimada.
+Supongamos ahora que deseamos predecir el valor de la variable dependiente ($y_p$) para un valor dado ($x_p$) de la variable independiente. Evidentemente dicho valor $y_p$ no ha contribuido en la estimación de los parámetros del modelo. Dicha predicción se efectúa(al igual que en el caso de la estimación de la media de la variable respuesta) sustituyendo el valor de $x_p$ en la recta de regresión estimada.
 
 No obstante, el error de la predicción vendrá ahora dado por la desviación cuadrática media de la predicción a la variable respuesta, o sea $E[(y_p-\widehat{y}_p)^2]$. Ahora bien,
 \begin{equation*}
 \begin{split}
 E[(y_p-\widehat{y}_p)^2]&=E\left[\left\lbrace(\beta_0-\widehat{\beta}_0)+(\beta_1-\widehat{\beta}_1)x_p+\epsilon_p\right\rbrace^2\right]\\
-&=Var[\widehat{\beta}_0]+Var[\widehat{\beta}_1]x^2_p+Var[\epsilon_p]+2x_pCov[\widehat{\beta}_0,\widehat{\beta}_1]-2Cov[\widehat{\beta}_0,\epsilon_p]-2x_pCov[\widehat{\beta}_1,\epsilon_p]\\
+&=\mathrm{Var}[\widehat{\beta}_0]+\mathrm{Var}[\widehat{\beta}_1]x^2_p+\mathrm{Var}[\epsilon_p]+2x_p\mathrm{Cov}[\widehat{\beta}_0,\widehat{\beta}_1]-2\mathrm{Cov}[\widehat{\beta}_0,\epsilon_p]-2x_p\mathrm{Cov}[\widehat{\beta}_1,\epsilon_p]\\
 &=\sigma^2\left\lbrace\left[\dfrac{1}{N}+\dfrac{\bar{x}^2}{Ns^2_x}\right]+\dfrac{x^2_p}{Ns^2_x}+1-\dfrac{2x_p\bar{x}}{Ns^2_x}\right\rbrace=\sigma^2\left[1+\dfrac{1}{N}+\dfrac{(\bar{x}-x_p)^2}{Ns^2_x}\right]
 \end{split}
 \end{equation*}
