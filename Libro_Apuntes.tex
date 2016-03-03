@@ -7,9 +7,11 @@
 \usepackage{amssymb}
 \usepackage{multicol}
 \usepackage[hidelinks]{hyperref}
-\usepackage[usenames]{color}
+\usepackage[usenames, dvipsnames]{color}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
-\title{Modelos Lineales}
+\title{{\Huge Modelos Lineales}}
+\author{Prof. Dr. Francisco de Asís Torres Ruiz\\
+		Prof. Dr. Juan José Serrano Pérez}
 \date{}
 \begin{document}
 \maketitle
@@ -602,6 +604,54 @@ x_d & y_{d1} & \cdots & \cdots & y_{dn_d}  \\
 \end{array}$$
 
 Gráficamente
+\begin{center}
+\begin{picture}(300,180)
+%Ejes X e Y
+\put(0,10){\line(1,0){300}}
+\put(0,10){\line(0,1){180}}
+
+%X_i
+\put(40,0){$x_1$}
+\put(110,0){$x_2$}
+\put(180,0){$x_i$}
+\put(250,0){$x_d$}
+
+\color{red}{
+%Puntos X_1
+\put(45,40){\circle*{5}}
+\put(45,60){\circle*{5}}
+\put(45,120){\circle*{5}}
+\put(45,140){\circle*{5}}
+
+%Puntos X_2
+\put(115,50){\circle*{5}}
+\put(115,60){\circle*{5}}
+\put(115,120){\circle*{5}}
+\put(115,140){\circle*{5}}
+\put(115,160){\circle*{5}}
+
+%Puntos X_i
+\put(185,40){\circle*{5}}
+\put(185,70){\circle*{5}}
+\put(185,80){\circle*{5}}
+\put(185,130){\circle*{5}}
+
+%Puntos X_d
+\put(255,100){\circle*{5}}
+\put(255,115){\circle*{5}}
+\put(255,130){\circle*{5}}
+\put(255,150){\circle*{5}}
+}
+
+\color{black}{
+%y_i
+\put(190,38){$y_{i2}$}
+\put(190,68){$y_{i3}$}
+\put(190,78){$y_{in_i}$}
+\put(190,128){$y_{i1}$}
+}
+\end{picture}
+\end{center}
 
 El modelo se escribe en la forma $y_{ij}=\beta_0+\beta_1x_i+\epsilon_{ij},\, i=1,...,d;\, j=1,...,n_i$
 
@@ -612,6 +662,69 @@ La función que hay que minimizar se escribe ahora como $$S(\beta_0,\beta_1)=\su
 Razonando igual que antes se llega al sistema de ecuaciones normales $$\sum^d_{i=1}n_i\bar{y}_i=N\beta_0+\beta_1\sum^d_{i=1}n_ix_i$$ $$\sum^d_{i=1}n_i\bar{y}_ix_i=\beta_0\sum^d_{i=1}n_ix_i+\beta_1\sum^d_{i=1}n_ix_i^2$$ cuya solución, obviamente, es la misma obtenida anteriormente.
 
 \textbf{En este caso la estimación considera la nube de puntos} $\mathbf{\{x_i,\bar{y}_i\}_{i=1,...,d}}$ \textbf{, tratando cada punto con la frecuencia} $\mathbf{n_i}$ \textbf{observada.}
+\ \\
+\begin{center}
+\begin{picture}(300,180)
+%Ejes X e Y
+\put(0,10){\line(1,0){300}}
+\put(0,10){\line(0,1){180}}
+
+%X_i
+\put(40,0){$x_1$}
+\put(110,0){$x_2$}
+\put(180,0){$x_i$}
+\put(250,0){$x_d$}
+
+\color{red}{
+%Puntos X_1
+\put(45,40){\circle*{5}}
+\put(45,60){\circle*{5}}
+\put(45,120){\circle*{5}}
+\put(45,140){\circle*{5}}
+
+%Puntos X_2
+\put(115,50){\circle*{5}}
+\put(115,60){\circle*{5}}
+\put(115,120){\circle*{5}}
+\put(115,140){\circle*{5}}
+\put(115,160){\circle*{5}}
+
+%Puntos X_i
+\put(185,40){\circle*{5}}
+\put(185,70){\circle*{5}}
+\put(185,80){\circle*{5}}
+\put(185,130){\circle*{5}}
+
+%Puntos X_d
+\put(255,100){\circle*{5}}
+\put(255,115){\circle*{5}}
+\put(255,130){\circle*{5}}
+\put(255,150){\circle*{5}}
+}
+
+\color{black}{
+%y_i
+\put(190,38){$y_{i2}$}
+\put(190,68){$y_{i3}$}
+\put(190,78){$y_{in_i}$}
+\put(190,128){$y_{i1}$}
+}
+
+\color{blue}{
+%Medias
+\put(39,95){\circle*{5}}
+\put(109,110){\circle*{5}}
+\put(178,90){\circle*{5}}
+\put(248,121){\circle*{5}}
+}
+
+\color{green}{
+%Línea de ajuste
+\put(0,65){\line(4,1){280}}
+}
+
+\end{picture}
+\end{center}
 
 Asimismo las relaciones obtenidas para los residuos, $e_{ij}=y_{ij}-\widehat{y_i}$, siguen siendo ciertas $$\sum^d_{i=1}\sum^{n_i}_{j=1}e_{ij}=0,\quad \bar{\widehat{y}}=\bar{y}, \quad \sum^d_{i=1}\sum^{n_i}_{j=1}e_{ij}x_{ij}=0, \quad \sum^d_{i=1}\sum^{n_i}_{j=1}(\bar{\widehat{y}}-\bar{y})e_{ij}=0$$
 \ \\
@@ -624,8 +737,68 @@ El método de mínimos cuadrados tratado anteriormente admite una fácil y simpl
 Con esta notación el modelo queda en la forma $y=\beta_0\mathbf{1}+\beta_1x+\varepsilon$
 
 Estimar los parámetros por mínimos cuadrados ordinarios requiere encontrar constantes $\widehat{\beta}_0$ y $\widehat{\beta}_1$ tales que el módulo del vector $\varepsilon$ sea mínimo. Por lo tanto se trata de determinar un vector $\widehat{y}$, en el plano definido por los vectores $\mathbf{1}$ y $x$ en un espacio$N$-dimensional, tal que el módulo del vector sea $\varepsilon$ sea mínimo.
+\begin{center}
+\begin{picture}(600,180)
+\put(50,0){\line(1,0){300}}\put(50,0){\line(2,3){100}}\put(350,0){\line(2,3){100}}\put(365,0){$<$\textbf{1, x}$>$}
+\thicklines{
+
+\put(160,50){\vector(1,2){66}}\put(205,160){\textbf{y}}
+\color{green}{
+	\put(160,50){\vector(4,-1){120}}
+	\put(280,20){\vector(-1,3){54}}
+	\put(248,120){$\epsilon$}
+	\put(242,30){\framebox(30,10){\color{black}{{\tiny $\beta_0+\beta_1\mathbf{X}$}}}}}
+	
+\color{red}{
+	\put(160,50){\vector(1,0){150}}
+	\put(310,50){\vector(-2,3){87}}
+	\put(252,140){$\epsilon$}
+	\put(270,52){\framebox(30,10){\color{black}{{\tiny $\beta_0+\beta_1\mathbf{X}$}}}}}
+	
+\color{blue}{
+	\put(156,50){\vector(2,1){150}}
+	\put(306,124){\vector(-3,2){85}}
+	\put(254,160){$\epsilon$}
+	\put(263,121){\framebox(30,10){\color{black}{{\tiny $\beta_0+\beta_1\mathbf{X}$}}}}}
+	
+}
+\end{picture}
+\end{center}
 
 La solución es tomar la proyección ortogonal del vector $y$ sobre este plano, ya que cualquier otro caso conduciría a un vector residual de módulo mayor. Con ello el vector $\varepsilon$ será perpendicular a todos los vectores de dicho plano, bastando para ello con que lo sean con los vectores que lo generan, o sea, los vectores $\mathbf{1}$ y $x$. Así tendrá
+\begin{center}
+\begin{picture}(600,180)
+\put(50,0){\line(1,0){300}}\put(50,0){\line(2,3){100}}\put(350,0){\line(2,3){100}}\put(365,0){$<$\textbf{1, x}$>$}
+\thicklines{
+
+\put(160,50){\vector(1,2){66}}\put(205,160){\textbf{y}}
+\color{green}{
+	\put(160,50){\vector(4,-1){120}}
+	\put(280,20){\vector(-1,3){54}}
+	\put(248,120){$\epsilon$}
+	\put(242,30){\framebox(30,10){\color{black}{{\tiny $\beta_0+\beta_1\mathbf{X}$}}}}}
+	
+\color{red}{
+	\put(160,50){\vector(1,0){150}}
+	\put(310,50){\vector(-2,3){87}}
+	\put(252,140){$\epsilon$}
+	\put(270,52){\framebox(30,10){\color{black}{{\tiny $\beta_0+\beta_1\mathbf{X}$}}}}}
+	
+\color{blue}{
+	\put(156,50){\vector(2,1){150}}
+	\put(306,124){\vector(-3,2){85}}
+	\put(254,160){$\epsilon$}
+	\put(263,121){\framebox(30,10){\color{black}{{\tiny $\beta_0+\beta_1\mathbf{X}$}}}}}
+	
+\color{BurntOrange}{
+	\put(150,50){\vector(3,2){67}}
+	\put(216,95){\vector(0,1){85}}
+	\put(210,140){$\epsilon$}
+	\put(182,96){\framebox(30,10){\color{black}{{\tiny $\widehat{\beta}_0+\widehat{\beta}_1\mathbf{X}$}}}}}
+	
+}
+\end{picture}
+\end{center}
 lo que se traduce en $$\varepsilon'\mathbf{1}=0 \Leftrightarrow \sum^N_{i=1}\epsilon_i=0$$ $$\varepsilon'x=0 \Leftrightarrow \sum^N_{i=1}\epsilon_ix_i=0$$ lo cual conduce al sistema de ecuaciones normales obtenido anteriormente.
 
 Notemos asimismo que el triángulo resultante de la proyección indica que $\parallel y\parallel^2=\parallel e\parallel ^2+\parallel \widehat{y}\parallel ^2$ o, lo que es lo mismo, $$\sum^N_{i=1}y^2_i=\sum^N_{i=1}e_i^2+\sum^N_{i=1}\widehat{y}_i^2$$
