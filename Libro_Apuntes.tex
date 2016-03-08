@@ -6,6 +6,7 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{multicol}
+\usepackage{multirow}
 \usepackage[hidelinks]{hyperref}
 \usepackage[usenames, dvipsnames]{color}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
@@ -1070,13 +1071,126 @@ La resolución de este problema la haremos mediante la construcción de un estad
 Sabemos que $$\widehat{\beta}_1\rightsquigarrow N_1 \left[\beta_1;\dfrac{\sigma^2}{Ns^2_x}\right],\quad \mathrm{de\ donde\ }\frac{\widehat{\beta}_1-\beta^0_1}{\sqrt{\dfrac{\sigma^2}{Ns^2_x}}}\rightsquigarrow N_1\left[\frac{\widehat{\beta}_1-\beta^0_1}{\sqrt{\dfrac{\sigma^2}{Ns^2_x}}};1\right]$$
 
 En el razonamiento anterior encontramos un obstáculo y es el hecho de que $\sigma^2$ es desconocida en la práctica, por lo que previamente habrá que estimarla. Para ello usaremos la \textit{varianza residual}\footnote{ En los principales programas de ordenador se suele llamar \textit{error típico de la ecuación} a la raíz cuadrada de la estimación de $\sigma^2$}, suma de los cuadrados de los residuos dividida por el número de grados de libertad, que es un estimador insesgado de $\sigma^2$, y de quien conocemos que $$\dfrac{(N-2)\widehat{\sigma}^2}{\sigma^2}\rightsquigarrow \chi^2_{N-2}$$ siendo independiente de $\widehat{\beta}_1$.
+
+Por lo tanto, consideramos un estimador de la varianza del estimador $$\widehat{Var[\widehat{\beta}_1]}=\dfrac{\widehat{\sigma}^2}{Ns^2_x}$$ a cuya raíz cuadrada positiva se le conoce como \textit{error típica de $\widehat{\beta}_1$} y la notaremos SE$(\widehat{\beta}_1)$. Así formamos el estadístico $\dfrac{\widehat{\beta}_1-\beta^0_1}{\mathrm{SE}(\widehat{\beta}_1)}$, que verifica
+$$\dfrac{\widehat{\beta}_1-\beta^0_1}{\mathrm{SE}(\widehat{\beta}_1}=\dfrac{\widehat{\beta}_1-\beta^0_1}{\sqrt{\dfrac{\widehat{\sigma}^2}{Ns^2_x}}}=\dfrac{\dfrac{\widehat{\beta}_1-\beta^0_1}{\sqrt{\dfrac{\sigma^2}{Ns^2_x}}}}{\sqrt{\dfrac{(N-2)\widehat{\sigma}^2}{(N-2)\sigma^2}}}\rightsquigarrow t_{N-2}(\delta)\quad \mathrm{siendo}\quad (\delta)=\dfrac{Ns^2_x(\beta_1-\beta^0_1)^2}{\sigma^2}$$
+de donde se deduce que dicho estadístico, bajo la hipótesis nula, se distribuye como una $t$ de Student centrada con $N-2$ grados de libertad, siendo descentrada en otro caso.
+$$\dfrac{\widehat{\beta}_1-\beta^0_1}{\mathrm{SE}(\widehat{\beta}_1)}\begin{array}{c}
+ \\
+\rightsquigarrow \\ 
+\protect [\mathrm{H}_0]
+\end{array} t_{N-2}$$
+
+Así pues se calculará, para la muestra dada, el valor que toma dicho estadístico y se comparará con el valor de una $t$ de Student con $N-2$ grados de libertad que, a dos colas,deja una probabilidad $\alpha$, siendo la región de rechazo
+$$\dfrac{|\widehat{\beta}_1-\beta^0_1|}{\mathrm{SE}(\widehat{\beta}_1)}>t_{N-2,\alpha/2}$$
+
+En el caso particular $\mathrm{H}_0:\beta_1=0$ es muy importante en las aplicaciones puesto que de aceptarse la hipótesis nula se concluye que no hay relación lineal entre las variables $Y$ y $X$. Caso contrario se tendrá que $\widehat{\beta}_1$ es significativamente distinto de cero y por lo tanto la variable $X$ tiene un efecto explicativo sobre $Y$.
+
+Este contraste recibe el nombre de \textit{contraste de regresión} y volverá a ser tratado posteriormente.
+
+A continuación calcularemos un intervalo de confianza para el verdadero valor de $\beta_1$. Para ello usaremos el método de la cantidad pivotal.
+
+En efecto, en este caso disponemos de un pivote que viene dado por $$\dfrac{\widehat{\beta}_1-\beta_1}{\mathrm{SE}(\widehat{\beta}_1)}$$ ya que se distribuye según una $t$ de Student centrada con $N-2$ grados de libertad. Así:
+$$1-\alpha=P\left[-t_{N-2,\frac{\alpha}{2}}\leq\dfrac{\widehat{\beta}_1-\beta_1}{\mathrm{SE}(\widehat{\beta}_1)}\leq t_{N-2,\frac{\alpha}{2}}\right]=$$
+$$=P\left[-t_{N-2,\frac{\alpha}{2}}\mathrm{SE}(\widehat{\beta}_1)\leq\widehat{\beta}_1-\beta_1\leq t_{N-2,\frac{\alpha}{2}}\mathrm{SE}(\widehat{\beta}_1)\right]=$$
+$$=P\left[\widehat{\beta}_1-t_{N-2,\frac{\alpha}{2}}\mathrm{SE}(\widehat{\beta}_1)\leq\beta_1\leq \widehat{\beta}_1+t_{N-2,\frac{\alpha}{2}}\mathrm{SE}(\widehat{\beta}_1)\right]$$
+por lo que el intervalo de confianza para $\beta_1$, a un nivel de confianza $1-\alpha$, es $$\widehat{\beta}_1\pm t_{N-2,\frac{\alpha}{2}}\mathrm{SE}(\widehat{\beta}_1)$$
+
+Observamos que el intervalo de confianza construido contiene con probabilidad $1-\alpha$ a todos los valores susceptibles de ser el incremento medio de la variable dependiente cuando la independiente toma el valor cero.
+
+Como caso particular si ducho intervalo contiene el valor cero ello nos indica la falta de relación lineal entre las dos variables.
 		\subsection{Contrastes e Intervalos para la Ordenada en el Origen}
-		
+La ordenada en el origen suele tener menos relevancia en el modelo de regresión que la pendiente porque, en múltiples ocasiones, la relación observada carece de sentido para cuando la variable explicativa toma el valor cero.
+
+Sin embargo, en otras ocasiones puede significar un valor medio de partida en el fenómeno estudiado (y por lo tanto se puede desear contrastar si es igual a un cierto valor dado). En otros casos puede ocurrir que no se conozca con certeza si la recta debe pasar por le origen de coordenadas y se desea investigar tal hecho (pensemos que obligar a la recta a tomar una altura cuando no debe tenerla puede afectar a la bondad de ajuste del modelo).
+
+En consecuencia tiene sentido plantearse un contraste de la forma 
+$$
+\begin{array}{c}
+\mathrm{H}_0:\beta_0=\beta^0_0\\
+\mathrm{H}_1:\beta_0\neq\beta^0_0\\
+\end{array}
+,\quad \mathrm{donde}\ \beta^0_0 \mathrm{es\ un\ valor\ prefijado}
+$$
+así como la construcción de un intervalo de confianza par ala ordenada en el origen.
+
+Razonando igual que antes llegamos al estadístico
+$$\dfrac{\widehat{\beta}_0-\beta^0_0}{\mathrm{SE}(\widehat{\beta}_1)}\rightsquigarrow t_{N-2}(\delta)\quad\mathrm{siendo}\quad \delta=\dfrac{(\beta_0-\beta^0_0)^2}{\sigma^2\left[\dfrac{1}{N}+\dfrac{\bar{x}^2}{Ns^2_x}\right]}\quad\mathrm{y}\quad\mathrm{SE}(\widehat{\beta}_0)=\widehat{\sigma}\sqrt{\frac{1}{N}+\frac{\bar{x}^2}{Ns^2_x}}$$
+mientras que el intervalo de confianza para $\beta_0$, a un nivel de confianza $1-\alpha$, es $$\widehat{\beta}_0\pm t_{N-2,\frac{\alpha}{2}}\mathrm{SE}(\widehat{\beta}_0)$$
+\ \\
+
+\textcolor{red}{EJERCICIO: Realizar los desarrollos necesarios para la resolución del problema de contraste y la obtención del intervalo de confianza.}
+\ \\
+
 		\subsection{Intervalo de Confianza para $\sigma^2$}
-		
+Para la construcción del intervalo de confianza para la varianza de los términos de perturbación tenemos que hacer uso de su estimador $\widehat{\sigma}^2$ y del hecho de que $$\dfrac{(N-2)\widehat{\sigma}^2}{\sigma^2}\rightsquigarrow \chi^2_{N-2}$$
+con lo cual tenemos un pivote disponible. Así,
+$$1-\alpha=P\left[\chi^2_{N-2,1-\frac{\alpha}{2}}\leq\dfrac{(N-2)\widehat{\sigma}^2}{\sigma^2}\leq\chi^2_{N-2,\frac{\alpha}{2}}\right]=$$
+$$=P\left[\dfrac{1}{\chi^2_{N-2,\frac{\alpha}{2}}}\leq\dfrac{\sigma^2}{(N-2)\widehat{\sigma}^2}\leq\dfrac{1}{\chi^2_{N-2,1-\frac{\alpha}{2}}}\right]=$$	
+$$=P\left[\dfrac{(N-2)\widehat{\sigma}^2}{\chi^2_{N-2,\frac{\alpha}{2}}}\leq\sigma^2\leq\dfrac{(N-2)\widehat{\sigma}^2}{\chi^2_{N-2,1-\frac{\alpha}{2}}}\right]$$
+por lo que el intervalo de confianza, a un nivel de confianza $1-\alpha$, para $\sigma^2$ es $$I=\left(\dfrac{(N-2)\widehat{\sigma}^2}{\chi^2_{N-2,\frac{\alpha}{2}}},\dfrac{(N-2)\widehat{\sigma}^2}{\chi^2_{N-2,1-\frac{\alpha}{2}}}\right)$$
 	\section{Contraste de Regresión. Tabla ANOVA para la Regresión Simple}
+El objetivo del denominado \textit{Contraste de Regresión} es determinar si realmente existe relación entre las variables explicada y explicativa.
+
+Evidentemente esta debe ser la primera pregunta que debemos resolver ya que su respuesta determinará si es plausible plantearse la regresión entre ambas variables (otra cuestión es que la relación sea óptima o no, lo cual viene dado por el valor del coeficiente de determinación).
+
+La formulación paramétrica del contraste es evidente ya que, de no haber relación entre las variables, la pendiente de la recta de regresión debería ser cero. En consecuencia, el contraste se formula así:
+$$\mathrm{H}_0:\beta_1=0$$
+$$\mathrm{H}_1:\beta_1\neq 0$$
+que no es más que un caso particular del anteriormente visto (tomando $\beta^0_1=0$). El estadístico necesario para su resolución es: $$\dfrac{\widehat{\beta}_1}{\mathrm{SE}(\widehat{\beta}_1)}$$ que bajo la hipótesis nula se distribuye según una $t$ de Student con $N-2$ grados de libertad.
+
+En consecuencia, el problema de contraste está resuelto. Sin embargo esta no es la metodología habitual en la teoría de modelos lineales.
+
+Dicha metodología se basa en la descomposición de la variabilidad, esto es 
+\begin{center}
+VT = VE + VNE
+\end{center}
+y la idea es comparar la variabilidad explicada con la no explicada. Intuitivamente la hipótesis nula debe rechazarse cuando la variabilidad explicada sea \textit{significativamente más grande} que la residual.
+
+La expresión \textit{significativamente más grande} debe medirse en términos de un estadístico que compare ambas variabilidades y cuya distribución sea conocida.
+
+En este caso sí disponemos de dicho estadístico y de su distribución. En concreto sabemos que
+$$\dfrac{\mathrm{VE}}{\dfrac{\mathrm{VNE}}{N-2}}\rightsquigarrow F_{1,N-2}(\delta),\qquad \delta=\dfrac{Ns^2_x\beta^2_1}{\sigma^2}$$
+
+Así, para unos valores muestrales observados, se compara el valor que toma ese estadístico con un valor crítico preestablecido, $F^*_{1,N-2,\alpha}$ supuesto que el nivel de significación impuesto es $\alpha$. Si el valor del estadístico es mayor que $F^*_{1,N-2,\alpha}$ se rechaza la hipótesis nula de que $\beta_1=0$ y por lo tanto se admite que hay relación lineal significativa entre las variables $X$ e $Y$.
+
+En la práctica la realización del contraste se efectúa construyendo la siguiente tabla que es conocida como tabla ANOVA para la regresión:
+\begin{table}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline 
+Fuente & Suma de Cuadrados & Grados de Libertad & Medias Cuadráticas & \multicolumn{2}{|c|}{$F_exp$} & P-Valor \\ 
+\hline 
+\multirow{2}{1.5cm}{Explicada} & \multirow{2}{0.5cm}{VE} & \multirow{2}{0.7cm}{VE/1} & \multirow{2}{0.5cm}{1} & \multicolumn{2}{|c|}{$\dfrac{\mathrm{VE}}{\mathrm{VNE}/(N-2)}$} &  \\
+ & & & & \multicolumn{2}{|c|}{\ } & \\
+Residual & VNE & $N-2$ & VNE/($N-2$) & \multicolumn{2}{|c|}{\ } &  \\ 
+Total & VT & $N-1$ &  & \multicolumn{2}{|c|}{\ } &  \\ 
+\hline 
+\end{tabular} 
+\end{table}
+
+Desde el punto de vista de las aplicaciones, y dada la expresión del coeficiente de determinación, el estadístico puede expresarse como 
+$$\dfrac{(N-2)R^2}{1-R^2},$$
+y como $R^2=r^2_{xy}$ también puede escribirse como 
+$$\dfrac{(N-2)r^2_{xy}}{1-r^2_{xy}}$$
 	\section{Intervalos de Confianza para las Predicciones. Bandas de Confianza}
+Un modelo de regresión permite, en primer lugar, estimar las medias de las distribuciones de $Y$ para cada valor de la variable explicativa y, en segundo lugar, predecir futuros valores de la variable respuesta o dependiente.
+
+Tanto la estimación de la media como la predicción de los valores de la variable dependiente se obtienen de la misma manera: sustituyendo en la recta de regresión el valor $x_p$ y calculando así el valor $\widehat{y}_p$.
+
+Por lo tanto sus valores numéricos son idénticos, aunque las precisiones de estas estimaciones son distintas, como ya sabemos. Concretamente, dado $x_p$, se tiene
+\begin{center}
+$\mathrm{E}\left[\widehat{\mathrm{E}[y_p]}-\mathrm{E}[y_p]\right]^2=\sigma^2\left[\dfrac{1}{N}+\dfrac{(x_p-\bar{x})^2}{Ns^2_x}\right]\qquad$\textcolor{red}{Error de estimación de la media}
+\end{center}
+\begin{center}
+$\mathrm{E}[(\widehat{y}_p-y_p)^2]=\sigma^2\left[1+\dfrac{1}{N}+\dfrac{(x_p-\bar{x})^2}{Ns^2_x}\right]\qquad$\textcolor{red}{Error de la predicción de un valor}
+\end{center}
+notándose que la precisión es mayor en el caso de la predicción $\widehat{y}_p$, al añadirse la variabilidad de $y_p$ respecto de su media.
+
+Nos planteamos a continuación la construcción de intervalos de confianza que nos permitan observar, para un valor dado $x_p$, el margen en el que se mueven las estimaciones (o predicciones) establecidas y que dependerán, obviamente, de las precisiones anteriores.
 		\subsection{Intervalo de Confianza para los Valores Medios de la Variable Dependiente}
+En primer lugar notemos que
+$$\widehat{\mathrm{E}[y_p]}=\widehat{y}_p=\widehat{\beta}_0+\widehat{\beta}_1x_p=\sum^N_{i=1}\left[\dfrac{1}{N}+(x_p-\bar{x})w_i\right]y_i$$
+y dado que las variables $y_i$ son normales e independientes se tiene que $\widehat{\mathrm{E}[y_p]}$ (o $\widehat{y}_p$) se distribuye también como una normal con media y varianza
 		\subsection{Intervalo de Confianza para la Predicción de un Valor Concreto}
 		\subsection{Bandas de Confianza}
 	\section{Calibración Lineal}
