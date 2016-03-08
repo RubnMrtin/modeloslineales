@@ -1191,8 +1191,39 @@ Nos planteamos a continuación la construcción de intervalos de confianza que n
 En primer lugar notemos que
 $$\widehat{\mathrm{E}[y_p]}=\widehat{y}_p=\widehat{\beta}_0+\widehat{\beta}_1x_p=\sum^N_{i=1}\left[\dfrac{1}{N}+(x_p-\bar{x})w_i\right]y_i$$
 y dado que las variables $y_i$ son normales e independientes se tiene que $\widehat{\mathrm{E}[y_p]}$ (o $\widehat{y}_p$) se distribuye también como una normal con media y varianza
+$$\mathrm{E}[\widehat{\mathrm{E}[y_p]}]=\beta_0+\beta_1x_p=\mathrm{E}[y_p]$$
+$$\mathrm{Var}[\widehat{\mathrm{E}[y_p]}]=\mathrm{E}\left[\widehat{\mathrm{E}[y_p]}-E[y_p]\right]^2=\sigma^2\left[\dfrac{1}{N}+\dfrac{(x_p-\bar{x})^2}{Ns^2_x}\right]$$
+
+Puesto que $\widehat{\mathrm{E}[y_p]}$ viene dado en función de $\widehat{\beta}_0$ y $\widehat{\beta}_1$ y estos son independientes de $\widehat{\sigma}^2$, si tiene que $\widehat{\mathrm{E}[y_p]}$ es independiente de $\widehat{\sigma}^2$ y con ello
+$$\dfrac{\widehat{\mathrm{E}[y_p]}-\mathrm{E}[\widehat{y}_p]}{\widehat{\sigma}\sqrt{\dfrac{1}{N}+\dfrac{(x_p-\bar{x})^2}{Ns^2_x}}}\rightsquigarrow t_{N-2}$$
+
+Así tenemos un pivote de donde se obtiene, al nivel de confianza $1-\alpha$, el intervalo
+$$\widehat{y}_p\pm t_{N-2,\frac{\alpha}{2}}\widehat{\sigma}\sqrt{\dfrac{1}{N}+\dfrac{(x_p-\bar{x})^2}{Ns^2_x}}$$
 		\subsection{Intervalo de Confianza para la Predicción de un Valor Concreto}
+Para la obtención de este intervalo tendremos en cuenta que
+\begin{equation*}
+\begin{split}
+&y_p\rightsquigarrow N_1[\beta_0+\beta_1x_p;\sigma^2]\\
+&\widehat{y}_p\rightsquigarrow N_1\left[\beta_0+\beta_1x_p;\sigma^2\left[\dfrac{1}{N}+\dfrac{(x_p-\bar{x})^2}{Ns^2_x}\right]\right]
+\end{split}
+\end{equation*}
+de donde, dada la independencia tanto de $\widehat{y}_p$ como de $y_p$ respecto a $\widehat{\sigma}^2$ (que depende de $y_1,...,y_N$)
+$$\dfrac{\widehat{y}_p-y_p}{\widehat{\sigma}\sqrt{1+\dfrac{1}{N}+\dfrac{(x_p-\bar{x})^2}{Ns^2_x}}}\rightsquigarrow t_{N-2}$$
+
+Nuevamente disponemos de un pivote, a partir del cual calculamos la expresión del intervalo de confianza al nivel de confianza $1-\alpha$, para la predicción:
+$$\widehat{y}_p\pm t_{N-2,\frac{\alpha}{2}}\widehat{\sigma}\sqrt{1+\dfrac{1}{N}+\dfrac{(x_p-\bar{x})^2}{Ns^2_x}}$$
+pudiéndose comprobar, comparando este intervalo con el calculado con anterioridad, lo ya comentado anteriormente en el sentido de que la amplitud del intervalo de confianza será mayor para predecir el valor de $y_p$ que para estimar su media al añadirse, en el primer caso, la variabilidad de $y_p$ respecto a su media.
 		\subsection{Bandas de Confianza}
+Si unimos los extremos de los intervalos construidos, tanto para las predicciones como para las medias, para cada valor de la variable explicativa y considerando el mismo nivel de confianza $1-\alpha$, se obtendrán las llamadas bandas de confianza. Dichas bandas nos marcarán los límites entre los cuales se encuentran los valores de las predicciones y de las medias.
+
+\begin{center}
+\includegraphics[scale=.7]{imagenes/tema3_4-3.png} 
+\end{center}
+
+Notemos que el aumento observado de amplitud de los intervalos de confianza al alejarnos de la media de la variable independiente es esperable, ya que las diferencias entre la pendiente estimada y la real producen errores crecientes al alejarse del centro de gravedad $(\bar{x},\bar{y})$.
+
+Además, recordaremos que tanto la estimación de la media como de la predicción tienen una precisión que depende de $(x_p-\bar{x})^2$, por lo que es lógico que al separarnos de la media de $X$ vaya aumentando la imprecisión de las estimaciones.
 	\section{Calibración Lineal}
+
 	\section{Contraste sobre la Falta de Ajuste (o de Linealidad)}
 \end{document}
