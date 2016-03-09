@@ -1224,6 +1224,39 @@ Notemos que el aumento observado de amplitud de los intervalos de confianza al a
 
 Además, recordaremos que tanto la estimación de la media como de la predicción tienen una precisión que depende de $(x_p-\bar{x})^2$, por lo que es lógico que al separarnos de la media de $X$ vaya aumentando la imprecisión de las estimaciones.
 	\section{Calibración Lineal}
+En ocasiones el interés radica en disponer de información sobre el valor desconocido de $x_p$ para el cual se observa un valor $y_p$ de la variable dependiente. Este problema recibe el nombre de \textit{calibración lineal}.
 
+Notemos que no tiene sentido el cálculo de la regresión de $X$ sobre $Y$ (ya que sus papeles no son intercambiables). Desde luego se puede obtener un valor para $x_p$ sin más que despejar de la expresión de la recta de regresión, pero este cálculo no es suficiente.
+
+En efecto, dado un valor $x_p$ de la variable independiente, el intervalo de confianza para la predicción (bien sea para el valor concreto o para la media de la variable dependiente) contiene con probabilidad $1-\alpha$ al verdadero valor de la predicción. Si el valor $y_p$ observado está en ese intervalo, entonces es probable que haya sido generado por ese valor $x_p$.
+
+Pero es probable que el valor $y_p$ también esté incluido en el intervalo generado por otro valor $x^\mathrm{'}_p$ (o por otros), con lo cual no podemos tener seguridad plena de cuál valor de la variable independiente es la generadora del valor observado de la dependiente. En consecuencia, no basta con despejar de la recta de regresión.
+
+Según lo dicho, se puede obtener un intervalo de valores para $x_p$ sin más que igualar $y_p$ a los límites de los intervalos calculado para la predicción y despejar el valor $x_p$.
+
+\begin{center}
+IMAGEN
+\end{center}
+
+Dependiendo de que el valor $y_p$ sea considerado valor exacto o valor medio de la variable dependiente, habrá que usar unos intervalos u otros. Así para el caso del valor exacto de la variable se tiene
+$$y_p=\overbrace{\bar{y}+\widehat{\beta}_1(x_p-\bar{x})}^{\widehat{y}_p}\pm t_{N-2,\frac{\alpha}{2}}\widehat{\sigma}\sqrt{1+\dfrac{1}{N}+\dfrac{(x_p-\bar{x})^2}{Ns^2_x}}$$
+de donde
+$$\left[(y_p-\bar{y})-\widehat{\beta}_1(x_p-\bar{x})\right]^2=t^2_{N-2,\frac{\alpha}{2}}\widehat{\sigma}^2\left(1+\dfrac{1}{N}+\dfrac{(x_p-\bar{x})^2}{Ns^2_x}\right)$$
+y agrupando términos se obtiene la siguiente ecuación de segundo grado en $x_p-\bar{x}$
+$$\left(\widehat{\beta}^2_1-\dfrac{t^2_{N-2,\frac{\alpha}{2}}\widehat{\sigma}^2}{Ns^2_x}\right)(x_p-\bar{x})^2-2\widehat{\beta}_1(y_p-\bar{y})(x_p-\bar{x})+(y_p-\bar{y})^2-t^2_{N-2,\frac{\alpha}{2}}\widehat{\sigma}^2\left(1+\dfrac{1}{N}\right)=0$$
+cuya solución es
+$$x_p-\bar{x}=\dfrac{\widehat{\beta}_1(y_p-\bar{y})}{\left(\widehat{\beta}^2_1-\dfrac{t^2_{N-2,\frac{\alpha}{2}}\widehat{\sigma}^2}{Ns^2_x}\right)}\pm\dfrac{t_{N-2,\frac{\alpha}{2}}\widehat{\sigma}\sqrt{\left(\widehat{\beta}^2_1-\dfrac{t^2_{N-2,\frac{\alpha}{2}}\widehat{\sigma}^2}{Ns^2_x}\right)\left(1+\dfrac{1}{N}\right)+\dfrac{(y_p-\bar{y})^2}{Ns^2_x}}}{\left(\widehat{\beta}^2_1-\dfrac{t^2_{N-2,\frac{\alpha}{2}}\widehat{\sigma}^2}{Ns^2_x}\right)}$$
+de donde se obtiene el intervalo de valores para $x_p$
+$$\bar{x}+\dfrac{\widehat{\beta}_1(y_p-\bar{y})}{\left(\widehat{\beta}^2_1-\dfrac{t^2_{N-2,\frac{\alpha}{2}}\widehat{\sigma}^2}{Ns^2_x}\right)}\pm\dfrac{t_{N-2,\frac{\alpha}{2}}\widehat{\sigma}\sqrt{\left(\widehat{\beta}^2_1-\dfrac{t^2_{N-2,\frac{\alpha}{2}}\widehat{\sigma}^2}{Ns^2_x}\right)\left(1+\dfrac{1}{N}\right)+\dfrac{(y_p-\bar{y})^2}{Ns^2_x}}}{\left(\widehat{\beta}^2_1-\dfrac{t^2_{N-2,\frac{\alpha}{2}}\widehat{\sigma}^2}{Ns^2_x}\right)}$$
+
+Este procedimiento es válido para la obtención de un intervalo de valores para $x_p$ si el valor conocido es el promedio de la variable $x_p$ que notaremos $\bar{y}_p$. Para ello habrá que seguir el mismo proceso partiendo de la expresión del intervalo de confianza para la media de la variable dependiente, obteniéndose el intervalo
+$$\bar{x}+\dfrac{\widehat{\beta}_1(y_p-\bar{y})}{\left(\widehat{\beta}^2_1-\dfrac{t^2_{N-2,\frac{\alpha}{2}}\widehat{\sigma}^2}{Ns^2_x}\right)}\pm\dfrac{t_{N-2,\frac{\alpha}{2}}\widehat{\sigma}\sqrt{\left(\widehat{\beta}^2_1-\dfrac{t^2_{N-2,\frac{\alpha}{2}}\widehat{\sigma}^2}{Ns^2_x}\right)\dfrac{1}{N}+\dfrac{(y_p-\bar{y})^2}{Ns^2_x}}}{\left(\widehat{\beta}^2_1-\dfrac{t^2_{N-2,\frac{\alpha}{2}}\widehat{\sigma}^2}{Ns^2_x}\right)}$$
+\ \\
+
+\textcolor{red}{EJERCICIO: Siguiendo el mismo razonamiento anterior, obtener el intervalo de valores para $x_p$ conocido el promedio para la variable $y_p$.}
 	\section{Contraste sobre la Falta de Ajuste (o de Linealidad)}
+Cuando se dispone de varios valores de la variable dependiente para cada valor fijado de la variable independiente es posible construir un contraste para investigar, la hipótesis de que las medias de las distribuciones condicionadas están o no sobre una recta. Es decir, la hipótesis nula en este caso es
+$$\mathrm{H}_0:\mathrm{E}[y_{ij}\ |\ x_i]=\beta_0+\beta_1x_i$$
+
+Sabemos que en esta situación, para cada valor de $x_i$, la distribución de $Y$ se sustituye por la media condicionada $\bar{y}_i$, lo cual introduce un error adicional en el modelo atendiendo a la representatividad de dicha media condicionada en esa distribución. Por lo tanto es esperable la existencia de dos fuentes de error: una debida a la falta de ajuste de la media condicionada a la recta, y otra debida a la variabilidad de cada distribución condicionada entorno a su media.
 \end{document}
